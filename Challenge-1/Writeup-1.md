@@ -1,5 +1,3 @@
-
-```markdown
 # 🔐 Challenge: The Last Words of the Anonymous Hacker
 
 A mysterious executable has surfaced on underground forums.  
@@ -20,7 +18,7 @@ Your task is to:
 
 Submit the activation code in the format:
 
-```
+```markdown
 
 NAME{...}
 
@@ -39,7 +37,7 @@ NAME{...}
 
 ## 🏁 Flag Format
 
-```
+```markdown
 
 DAKSHH{...}
 
@@ -51,4 +49,3 @@ The legendary hacker left one final safeguard in place.
 Can you uncover what others have overlooked?
 
 **Good luck.**
-```
