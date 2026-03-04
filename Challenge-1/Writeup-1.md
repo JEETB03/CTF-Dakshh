@@ -1,4 +1,10 @@
-# 🔐 Challenge: The Last Words of the Anonymous Hacker
+# 🔐 Challenge Name: The Last Words of the Anonymous Hacker
+
+**Category:** Reverse Engineering (XOR-based transformations)  
+**Difficulty:** Easy 
+**Points:** 100
+
+---  
 
 A mysterious executable has surfaced on underground forums.  
 It claims to contain the final message left behind by a legendary anonymous hacker — but the message is locked behind an activation code.
