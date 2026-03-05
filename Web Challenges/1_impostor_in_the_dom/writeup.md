@@ -21,6 +21,15 @@ Can you uncover the **impostor hiding in the DOM?**
 
 ---
 
+## CTFd Room Description
+> "Emergency Meeting! There's an Impostor among us..."
+> 
+> The Polus Space Agency's internal feedback portal has been acting highly suspicious. Crewmates are reporting that their terminals are executing unauthorized commands after reviewing submitted logs. We suspect an Impostor has weaponized the DOM. 
+> 
+> Your mission is to investigate the `/feedback` endpoint, craft a payload that bypasses their weak keyword filters, and trick the Admin Bot into revealing the deeply hidden secrets. Watch your back!
+
+---
+
 # ?? Vulnerability Analysis
 
 The application allows users to submit feedback through the `/feedback` endpoint.

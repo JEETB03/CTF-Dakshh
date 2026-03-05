@@ -8,6 +8,15 @@
 
 ---
 
+## CTFd Room Description
+> "We are fsociety. We are finally awake."
+> 
+> Stateside Radio is a premium music streaming service, but our intercept shows they are using a dangerously flawed authentication implementation in their API. We've managed to sniff the network traffic and capture a PCAP file containing the login sequence for a user named `elliot`.
+> 
+> Analyze the packet capture, extract the credentials, and use their JWT implementation against them. Can you forge your way to Admin access and intercept the hidden broadcast?
+
+---
+
 ## Step 1: Extract & Inspect Files (30 seconds)
 
 ```bash

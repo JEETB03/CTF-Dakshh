@@ -23,6 +23,15 @@ Your mission is to investigate the portal and determine whether **sensitive file
 
 ---
 
+## CTFd Room Description
+> "Even the world's greatest detective can't fix broken access control."
+> 
+> Wayne Enterprises just rolled out a sleek, high-end corporate intranet for its employees. It looks incredibly secure on the surface, but Gotham's underground whispers that their API was rushed to production. 
+> 
+> We've secured basic IT Support credentials (`Employee ID: 1042`, `Password: password`). Log into the portal and manipulate the API to escalate your visibility. Rumor has it that Bruce Wayne (Employee #7) is hiding a highly restricted project file. Find it.
+
+---
+
 # ?? Initial Analysis
 
 Visiting the portal presents a **login screen**.

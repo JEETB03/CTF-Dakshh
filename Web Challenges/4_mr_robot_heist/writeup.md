@@ -22,6 +22,15 @@ Because the challenge is themed around **Mr. Robot** and involves an **archive s
 
 ---
 
+## CTFd Room Description
+> "Are you a 1 or a 0? The choice is yours."
+> 
+> Welcome to the E-Corp Secure Document Archive. Their engineers claim the system is impenetrable, utilizing strict Web Application Firewalls (WAF) to sanitize all inputs and heavily restrict directory traversal. 
+> 
+> But we know better. They only peel back one layer of the onion. Your task is to bypass their aggressive encoding filters and traverse deep into the server's root filesystem to steal the master flag hidden inside `flag.txt`. 
+
+---
+
 ## Step 1 — Initial Exploration
 
 First, start the service and access the web application:
