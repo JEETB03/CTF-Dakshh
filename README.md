@@ -89,3 +89,44 @@ You’re on the right track.
 
 Good luck.
 *The compiler is watching.*
+
+---
+
+**Contributor:** Jyotirmoy Karmakar (0xjyotirmoy)
+
+## 🌐 Web Exploitation Series (Extended)
+
+These web challenges cover a wide spectrum of vulnerabilities — from classic SQL injection to advanced Anti-AI mechanisms designed to defeat automated scanners and LLMs. Each challenge includes detailed setup instructions, a step-by-step solving walkthrough, and an automated solve script for verification.
+
+**Challenges included:**
+1. **Authentication Bypass – Phantom Login** (Easy) - SQL Injection
+    - *Concept*: Classic SQLi authentication bypass on a SQLite-backed login form.
+2. **Blind SQL Injection – Advanced WAF Bypass** (Medium) [*Anti-AI*]
+    - *Concept*: Blind SQLi via `ORDER BY` + `INSTR()` function to extract data while evading a keyword-based WAF.
+3. **SQL Injection – Unicode Phantom** (Hard) [*Anti-AI*]
+    - *Concept*: Unicode Normalization (`NFKC`) bypass — fullwidth apostrophe `＇` passes WAF, then normalizes to `'` on the backend.
+4. **Web Treasure Hunt** (Easy) [*Anti-AI*]
+    - *Concept*: Hinglish-hint reconnaissance with fake flag traps, Base64 decoding, and command injection.
+5. **Web Treasure Hunt – CSS Ghost** (Medium) [*Anti-AI*]
+    - *Concept*: All hints rendered via CSS `::after` pseudo-elements — invisible to `curl` and DOM scrapers.
+6. **Web Treasure Hunt – Turing Test API** (Hard) [*Anti-AI*]
+    - *Concept*: SVG-obfuscated instructions leading to a strict `OPTIONS → PATCH → GET` API sequence with state-dependent cookies.
+7. **Reflective XSS Cookie Steal** (Medium)
+    - *Concept*: WAF bypass using `<svg/onload=...>`, Puppeteer admin bot simulation, cookie exfiltration.
+8. **Host Header Injection** (Medium)
+    - *Concept*: Password Reset Poisoning via spoofed `Host` header to steal admin reset tokens.
+
+All flags follow the format: `DAKSHH{example_flag_here}`
+
+---
+
+**Contributor:** Jyotirmoy Karmakar (0xjyotirmoy)
+
+## 🔐 Crypto Challenge Series (Extended)
+
+**Challenges included:**
+1. **Quantum Steps** (Medium) - Python
+    - *Theme*: Discrete Logarithm
+    - *Concept*: Baby-step Giant-step algorithm to solve a DLP and recover the AES decryption key for the encrypted flag.
+
+All flags follow the format: `DAKSHH{example_flag_here}`

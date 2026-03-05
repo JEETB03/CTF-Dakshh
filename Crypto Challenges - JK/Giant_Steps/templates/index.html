@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giant Steps - Cryptography CTF</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #121212;
+            color: #0f0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 15px rgba(0, 255, 0, 0.2);
+        }
+        h1 {
+            color: #fff;
+            text-align: center;
+        }
+        .story {
+            font-style: italic;
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+        .data {
+            background-color: #000;
+            padding: 15px;
+            border-left: 4px solid #0f0;
+            margin-bottom: 20px;
+        }
+        .data-item {
+            margin: 5px 0;
+            word-wrap: break-word;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #0f0;
+            color: #000;
+            padding: 10px 15px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .btn:hover {
+            background-color: #0c0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Giant Steps</h1>
+        <div class="story">
+            <p>We intercepted a secure communication between two advanced robots. They recently upgraded their security protocol, increasing their prime modulus P from a tiny number to over 4 billion. They claim this makes their encryption uncrackable because a brute-force loop would take hours to run.</p>
+            <p><strong>Your Mission:</strong> Prove them wrong. Analyze the interception below, break the key exchange, and decrypt the flag.</p>
+        </div>
+
+        <h2>Intercepted Data (output.txt)</h2>
+        <div class="data">
+            {% for key, val in params.items() %}
+                <div class="data-item"><strong>{{ key }}:</strong> {{ val }}</div>
+            {% endfor %}
+        </div>
+
+        <h2>Challenge Source</h2>
+        <p>You obtained part of the robots' communication program:</p>
+        <a href="/download" class="btn">Download challenge.py</a>
+    </div>
+</body>
+</html>

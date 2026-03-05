@@ -1,0 +1,7 @@
+Diffie-Hellman Key Exchange Interception
+----------------------------------------
+P = 4294967291
+G = 2
+A = 2058163776
+B = 2176654401
+Ciphertext = 9cecd3494da32b8b62a1c4c8c9698e3ea0cc466fa3384ea178557466656193de5ce0695a437dcff5ea51bc22b0b69c97
