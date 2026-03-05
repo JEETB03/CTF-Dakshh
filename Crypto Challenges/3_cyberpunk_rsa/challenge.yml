@@ -1,0 +1,20 @@
+name: "Cyberpunk Secure Broadcast"
+author: "DAKSHH CTF"
+category: Crypto
+description: |
+  A rogue AI in the Night City network is broadcasting secure keys to three isolated databanks. To dodge detection and save processing cycles, it's taking shortcuts with its RSA implementation. We intercepted the traffic. Can you shatter the encryption and retrieve the root key?
+
+  **Files provided:**
+  - `encrypt.py`
+  - `intercepts.txt`
+
+value: 300
+type: standard
+flags:
+  - DAKSHH{n0_c0rp0_n3tw0rk_1s_s4f3_fr0m_rs4}
+
+files:
+  - dist/encrypt.py
+  - dist/intercepts.txt
+
+state: visible

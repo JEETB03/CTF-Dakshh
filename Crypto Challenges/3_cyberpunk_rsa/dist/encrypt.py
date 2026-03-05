@@ -1,0 +1,31 @@
+from Crypto.Util.number import getPrime, bytes_to_long
+
+banner = """
+██████╗██╗   ██╗██████╗ ███████╗██████╗
+██╔════╝██║   ██║██╔══██╗██╔════╝██╔══██╗
+██║     ██║   ██║██████╔╝█████╗  ██████╔╝
+██║     ██║   ██║██╔═══╝ ██╔══╝  ██╔══██╗
+╚██████╗╚██████╔╝██║     ███████╗██║  ██║
+╚═════╝ ╚═════╝ ╚═╝     ╚══════╝╚═╝  ╚═╝
+  CYBERPUNK SECURE NODE
+"""
+print(banner)
+
+# Cyberpunk root key 
+flag = b"REDACTED"
+m = bytes_to_long(flag)
+
+# The rogue AI uses a small public exponent to save processing cycles
+e = 3
+
+print("Broadcasting to secure databanks...\n")
+
+for i in range(3):
+    p = getPrime(512)
+    q = getPrime(512)
+    n = p * q
+    c = pow(m, e, n)
+    print(f"--- Databank {i+1} ---")
+    print(f"n{i+1} = {n}")
+    print(f"e = {e}")
+    print(f"c{i+1} = {c}\n")

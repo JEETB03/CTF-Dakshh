@@ -1,0 +1,20 @@
+name: "Neo's Broken RNG"
+author: "DAKSHH CTF"
+category: Crypto
+description: |
+  Neo intercepted an encrypted transmission from a rogue Matrix access node. The agents claim their encryption is flawless. Can you take the red pill and decrypt the message?
+
+  **Files provided:**
+  - `encrypt.cpp`
+  - `output.txt`
+
+value: 100
+type: standard
+flags:
+  - DAKSHH{n30_f0und_th3_r3d_p1ll_x0r}
+
+files:
+  - dist/encrypt.cpp
+  - dist/output.txt
+
+state: visible

@@ -1,0 +1,20 @@
+name: "Sherlock's Cipher Notebook"
+author: "DAKSHH CTF"
+category: Crypto
+description: |
+  Sherlock Holmes has intercepted a series of coded broadcasts sent by Moriarty's lieutenants. They claim to be using an "unbreakable" One-Time Pad system. However, Sherlock suspects they've made a fatal implementation error. Can you crack the code?
+
+  **Files provided:**
+  - `Encrypt.java`
+  - `ciphertexts.txt`
+
+value: 200
+type: standard
+flags:
+  - DAKSHH{3l3m3nt4ry_my_d34r_w4ts0n_0tp}
+
+files:
+  - dist/Encrypt.java
+  - dist/ciphertexts.txt
+
+state: visible

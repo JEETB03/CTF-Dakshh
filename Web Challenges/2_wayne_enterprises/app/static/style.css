@@ -1,0 +1,339 @@
+:root {
+    --bg-color: #0b132b;
+    --card-bg: #1c2541;
+    --text-primary: #f0f4f8;
+    --text-secondary: #8d99ae;
+    --accent: #3a506b;
+    --primary: #fca311;
+    --danger: #e63946;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+}
+
+.brand {
+    font-weight: 800;
+    font-size: 2rem;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.brand span {
+    color: var(--primary);
+}
+
+.subtitle {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+.center-stage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: radial-gradient(circle at 50% 0%, var(--card-bg), var(--bg-color));
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.login-card {
+    width: 100%;
+    max-width: 400px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--accent);
+    color: white;
+    border-radius: 6px;
+    font-family: 'Montserrat';
+    transition: 0.3s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.btn {
+    width: 100%;
+    padding: 14px;
+    font-family: 'Montserrat';
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.primary-btn {
+    background: var(--primary);
+    color: #000;
+}
+
+.primary-btn:hover {
+    background: #e09210;
+    transform: translateY(-2px);
+}
+
+.sm-btn {
+    padding: 10px;
+    font-size: 0.85rem;
+    background: var(--accent);
+    color: white;
+}
+
+.error-msg {
+    color: var(--danger);
+    text-align: center;
+    margin-top: 15px;
+    font-size: 0.9rem;
+    display: none;
+}
+
+/* Dashboard Layout */
+.dashboard-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background: var(--card-bg);
+    border-right: 1px solid var(--accent);
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+}
+
+.brand-sidebar {
+    text-align: center;
+    color: white;
+    margin-bottom: 40px;
+    font-weight: 800;
+    font-size: 1.5rem;
+}
+
+.brand-sidebar span {
+    color: var(--primary);
+}
+
+.sidebar nav a {
+    display: block;
+    padding: 15px 30px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 600;
+    border-left: 4px solid transparent;
+    transition: 0.3s;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+    color: white;
+    background: rgba(255, 255, 255, 0.05);
+    border-left-color: var(--primary);
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    padding: 20px 30px;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-bar {
+    height: 70px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    background: var(--bg-color);
+}
+
+.search-bar input {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    width: 300px;
+    outline: none;
+}
+
+.user-pill {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.content-area {
+    padding: 40px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.welcome-banner {
+    margin-bottom: 40px;
+}
+
+.welcome-banner h2 {
+    font-weight: 300;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+}
+
+.profile-widget h3,
+.documents-widget h3 {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    color: var(--primary);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.profile-info {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.big-avatar {
+    width: 80px;
+    height: 80px;
+    font-size: 2rem;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+}
+
+h4 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.dept {
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+th {
+    color: var(--text-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+.loading {
+    text-align: center;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.restricted-label {
+    color: var(--danger);
+    font-size: 0.8rem;
+    font-weight: bold;
+    border: 1px solid var(--danger);
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 10px;
+}
+
+.download-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.download-link:hover {
+    text-decoration: underline;
+}

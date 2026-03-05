@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Wayne Enterprises Portal - Secure Intranet</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <div id="login-container" class="center-stage">
+        <div class="card login-card">
+            <h1 class="brand">WAYNE <span>ENTERPRISES</span></h1>
+            <p class="subtitle">Secure Employee Intranet</p>
+            <form id="login-form">
+                <div class="input-group">
+                    <label>Employee ID</label>
+                    <input type="number" id="emp-id" placeholder="e.g. 1042" required value="1042">
+                </div>
+                <div class="input-group">
+                    <label>Access Code</label>
+                    <input type="password" id="password" placeholder="••••••••" required value="password">
+                </div>
+                <button type="submit" class="btn primary-btn">Authenticate</button>
+                <div id="login-error" class="error-msg"></div>
+            </form>
+        </div>
+    </div>
+
+    <div id="dashboard-container" class="dashboard-layout" style="display: none;">
+        <aside class="sidebar">
+            <h2 class="brand-sidebar">WAYNE<span>ENT</span></h2>
+            <nav>
+                <a href="#" class="active">Dashboard</a>
+                <a href="#">Directory</a>
+                <a href="#">HR Resources</a>
+                <a href="#">IT Support</a>
+            </nav>
+            <div class="sidebar-footer">
+                <button id="logout-btn" class="btn sm-btn">Secure Logout</button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search the intranet...">
+                </div>
+                <div class="user-pill">
+                    <span id="nav-user-name">Loading...</span>
+                    <div class="avatar" id="nav-user-avatar">?</div>
+                </div>
+            </header>
+
+            <div class="content-area">
+                <div class="welcome-banner">
+                    <h2 id="welcome-text">Welcome back, Employee</h2>
+                    <p>Your secure workspace is ready.</p>
+                </div>
+
+                <div class="grid-2">
+                    <div class="card profile-widget">
+                        <h3>Identity Card</h3>
+                        <div class="profile-info">
+                            <div class="big-avatar" id="profile-avatar">?</div>
+                            <div class="details">
+                                <h4 id="profile-name">John Doe</h4>
+                                <p class="dept" id="profile-dept">IT Support</p>
+                                <p class="badge">Clearance Level 1</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card documents-widget">
+                        <h3>Authorized Files</h3>
+                        <div class="table-container">
+                            <table id="docs-table">
+                                <thead>
+                                    <tr>
+                                        <th>File Name</th>
+                                        <th>Clearance</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="docs-body">
+                                    <tr>
+                                        <td colspan="3" class="loading">Loading records...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+
+</html>

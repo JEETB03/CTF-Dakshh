@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DAKSHH CTF - The Web is a Lie</title>
+    <link rel="stylesheet" href="./style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <div class="glitch-wrapper">
+                <h1 class="glitch" data-text="DAKSHH CTF">DAKSHH CTF</h1>
+            </div>
+            <p class="subtitle">"The Web is a Lie."</p>
+        </header>
+
+        <main>
+            <div id="login-section" class="intro" style="text-align: center;">
+                <h2>Identify Yourself</h2>
+                <p>Enter a username to track your progress and submit flags.</p>
+                <input type="text" id="username-input" placeholder="Hacker Alias"
+                    style="padding: 10px; width: 60%; background: #222; color: #00ff41; border: 1px solid #00ff41; border-radius: 4px; font-family: 'Fira Code', monospace; margin-bottom: 10px;">
+                <br>
+                <button id="login-btn" class="access-btn" style="width: auto; padding: 10px 30px;">Initialize
+                    Session</button>
+            </div>
+
+            <div id="dashboard-section" style="display: none;">
+                <div
+                    style="display: flex; justify-content: space-between; align-items: flex-start; gap: 30px; margin-bottom: 40px; flex-wrap: wrap;">
+                    <div class="intro" style="flex: 2; margin-bottom: 0;">
+                        <h3>Welcome, <span id="current-user" style="color: var(--primary-color);"></span></h3>
+                        <p>The <strong>Polus Space Agency</strong> has reported unusual behavior in several of their
+                            internal web systems. Logs indicate the presence of an unknown hacker group leaving cryptic
+                            references to hackers, vigilantes, pop stars, and... impostors.</p>
+                        <p>Your task is to <strong>investigate these web applications and recover the hidden
+                                flags</strong>.</p>
+                        <p class="flag-format">Flag Format: <code>DAKSHH{...}</code></p>
+                    </div>
+
+                    <div class="leaderboard-panel"
+                        style="flex: 1; min-width: 300px; background: var(--bg-secondary); border: 1px solid #333; padding: 20px; border-radius: 8px;">
+                        <h3
+                            style="color: var(--primary-color); font-family: 'Fira Code', monospace; border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 15px;">
+                            TOP HACKERS</h3>
+                        <ul id="leaderboard-list" style="list-style-type: none; padding: 0;">
+                            <li>Loading...</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="challenges-grid">
+                    <!-- Challenge 1 -->
+                    <div class="challenge-card">
+                        <div class="card-header">
+                            <span class="difficulty easy">Easy</span>
+                            <span class="points">100 pts</span>
+                        </div>
+                        <h2>Impostor in the DOM</h2>
+                        <p class="category">Web Exploitation – XSS</p>
+                        <p class="desc">The Polus Crew Portal allows crewmates to submit anonymous feedback. However,
+                            something suspicious has been happening. Something tells you that the impostor may not be in
+                            the spaceship... but in the DOM.</p>
+                        <button class="access-btn" onclick="window.open('http://localhost:3000', '_blank')">Access
+                            Challenge</button>
+
+                        <div class="submission-area">
+                            <input type="text" id="flag-1" placeholder="DAKSHH{...}" class="flag-input">
+                            <button class="submit-btn" onclick="submitFlag(1)">Submit</button>
+                            <div id="status-1" class="status-msg"></div>
+                        </div>
+                    </div>
+
+                    <!-- Challenge 2 -->
+                    <div class="challenge-card">
+                        <div class="card-header">
+                            <span class="difficulty ez-med">Easy-Medium</span>
+                            <span class="points">200 pts</span>
+                        </div>
+                        <h2>Wayne Enterprises Leak</h2>
+                        <p class="category">Web Exploitation – IDOR</p>
+                        <p class="desc">You gain access to the Wayne Enterprises Employee Portal. Everything appears
+                            secure... until you notice something interesting in the page source.</p>
+                        <button class="access-btn" onclick="window.open('http://localhost:5000', '_blank')">Access
+                            Challenge</button>
+
+                        <div class="submission-area">
+                            <input type="text" id="flag-2" placeholder="DAKSHH{...}" class="flag-input">
+                            <button class="submit-btn" onclick="submitFlag(2)">Submit</button>
+                            <div id="status-2" class="status-msg"></div>
+                        </div>
+                    </div>
+
+                    <!-- Challenge 3 -->
+                    <div class="challenge-card">
+                        <div class="card-header">
+                            <span class="difficulty medium">Medium</span>
+                            <span class="points">300 pts</span>
+                        </div>
+                        <h2>Stateside Intercept</h2>
+                        <p class="category">Web Exploitation – MITM / JWT</p>
+                        <p class="desc">A suspicious music streaming service called Stateside Radio has been leaking
+                            premium accounts. Analyze the captured traffic and gain administrator access.</p>
+                        <div class="assets">
+                            <a href="/assets/traffic_capture.pcap" download>Download PCAP</a>
+                        </div>
+                        <button class="access-btn" onclick="window.open('http://localhost:3003', '_blank')">Access
+                            Challenge</button>
+
+                        <div class="submission-area">
+                            <input type="text" id="flag-3" placeholder="DAKSHH{...}" class="flag-input">
+                            <button class="submit-btn" onclick="submitFlag(3)">Submit</button>
+                            <div id="status-3" class="status-msg"></div>
+                        </div>
+                    </div>
+
+                    <!-- Challenge 4 -->
+                    <div class="challenge-card">
+                        <div class="card-header">
+                            <span class="difficulty hard">Hard</span>
+                            <span class="points">500 pts</span>
+                        </div>
+                        <h2>Mr. Robot’s Archive Heist</h2>
+                        <p class="category">Web Exploitation – Directory Traversal</p>
+                        <p class="desc">You manage to infiltrate E Corp’s Secure Document Archive. They claim their
+                            custom WAF is impenetrable. Can you peel back the layers and find the root flag?</p>
+                        <button class="access-btn" onclick="window.open('http://localhost:8080', '_blank')">Access
+                            Challenge</button>
+
+                        <div class="submission-area">
+                            <input type="text" id="flag-4" placeholder="DAKSHH{...}" class="flag-input">
+                            <button class="submit-btn" onclick="submitFlag(4)">Submit</button>
+                            <div id="status-4" class="status-msg"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="intro" style="margin-top: 60px; text-align: center;">
+                    <h2 style="color: #ff0055; font-family: 'Fira Code', monospace; letter-spacing: 2px;">REVERSE
+                        ENGINEERING SERIES</h2>
+                    <p>High-difficulty challenges designed to test low-level mechanics. <br>These are not brute-force
+                        challenges. They reward patience, structure, and deep reasoning.</p>
+                </div>
+
+                <div class="challenges-grid">
+                    <!-- RE Challenge Wrapper -->
+                    <div class="challenge-card" style="border-top: 4px solid #ff0055;">
+                        <div class="card-header">
+                            <span class="difficulty hard"
+                                style="background: #3a0013; color: #ff0055; border: 1px solid #ff0055;">Insane</span>
+                            <span class="points">1000 pts</span>
+                        </div>
+                        <h2>The Compiler is Watching</h2>
+                        <p class="category">Reverse Engineering – LLVM IR / XOR</p>
+                        <p class="desc">Contributor: Nabhonil Bhattacharjee. <br><br>Dive into LLVM IR analysis,
+                            XOR-based transformations, and ASCII manipulation. Recommended tools: Ghidra, IDA, clang,
+                            CyberChef.</p>
+                        <div class="assets">
+                            <a href="#"
+                                onclick="alert('Binaries will be released at the designated CTF start time.')">Download
+                                Challenge Binaries</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Developed for DAKSHH CTF.</p>
+        </footer>
+    </div>
+    <script type="module" src="./main.js"></script>
+</body>
+
+</html>
