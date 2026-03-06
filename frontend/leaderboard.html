@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DAKSHH CTF - Global Leaderboard</title>
+    <link rel="stylesheet" href="./style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        .leaderboard-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.1);
+        }
+
+        .leaderboard-table th,
+        .leaderboard-table td {
+            text-align: left;
+            padding: 15px;
+            border-bottom: 1px solid #333;
+        }
+
+        .leaderboard-table th {
+            font-family: 'Fira Code', monospace;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .leaderboard-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .leaderboard-table tr:hover {
+            background-color: rgba(0, 255, 65, 0.05);
+        }
+
+        .rank {
+            font-weight: bold;
+            color: #ffaa00;
+        }
+
+        .current-user-row {
+            background-color: rgba(0, 255, 65, 0.1);
+        }
+
+        .current-user-row td {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <div class="glitch-wrapper">
+                <h1 class="glitch" data-text="GLOBAL LEADERBOARD">GLOBAL LEADERBOARD</h1>
+            </div>
+            <p class="subtitle"><a href="./index.html" style="color: #00d2ff; text-decoration: none;">&lt; Back to
+                    Challenges</a></p>
+        </header>
+
+        <main>
+            <div class="intro" style="text-align: center;">
+                <h2>Current Standings</h2>
+                <p>Top Hackers across all DAKSHH CTF categories.</p>
+            </div>
+
+            <div style="margin-top: 40px;">
+                <table class="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th>RANK</th>
+                            <th>HACKER ALIAS</th>
+                            <th>SOLVED CHALLENGES</th>
+                            <th>TOTAL SCORE</th>
+                        </tr>
+                    </thead>
+                    <tbody id="full-leaderboard-list">
+                        <tr>
+                            <td colspan="4" style="text-align: center;">Loading data...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+
+        <footer>
+            <p>Developed for DAKSHH CTF.</p>
+        </footer>
+    </div>
+    <script src="./leaderboard.js"></script>
+</body>
+
+</html>

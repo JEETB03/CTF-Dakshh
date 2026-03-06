@@ -1,0 +1,26 @@
+name: "Poisoned Intelligence"
+author: "Antigravity"
+category: Misc
+description: |
+  **Story**
+  A security company trained an AI model to detect **malicious commands issued to autonomous drones**.
+  
+  Recently, drones started executing **dangerous commands** that should have been blocked.
+  Investigators suspect someone **poisoned the training data** before the model was deployed.
+  
+  Your task:
+  Find the poisoned entries in the dataset and uncover the hidden message left by the attacker.
+value: 150
+type: standard
+flags:
+  - flag{training_data_poisoned}
+tags:
+  - AI
+  - data-inspection
+  - medium
+files:
+  - dist/dataset.csv
+  - dist/train_model.py
+  - dist/README.txt
+state: visible
+version: "0.1"

@@ -1,0 +1,23 @@
+name: "Glitched Identity"
+author: "Antigravity"
+category: Misc
+description: |
+  **Story**
+  An undercover operative left behind a **damaged QR code** before disappearing.
+  
+  The QR was partially corrupted during transmission.
+  
+  Your job: **repair the QR code and reveal the hidden message.**
+value: 50
+type: standard
+flags:
+  - flag{qr_codes_never_lie}
+tags:
+  - qr
+  - osint
+  - easy
+files:
+  - dist/glitched_qr.png
+  - dist/note.txt
+state: visible
+version: "0.1"

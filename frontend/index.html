@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DAKSHH CTF - The Web is a Lie</title>
+    <title>DAKSHH CTF</title>
     <link rel="stylesheet" href="./style.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;700&display=swap"
@@ -17,7 +17,7 @@
             <div class="glitch-wrapper">
                 <h1 class="glitch" data-text="DAKSHH CTF">DAKSHH CTF</h1>
             </div>
-            <p class="subtitle">"The Web is a Lie."</p>
+            <p class="subtitle">Complete All Challenges to Win</p>
         </header>
 
         <main>
@@ -36,12 +36,10 @@
                     style="display: flex; justify-content: space-between; align-items: flex-start; gap: 30px; margin-bottom: 40px; flex-wrap: wrap;">
                     <div class="intro" style="flex: 2; margin-bottom: 0;">
                         <h3>Welcome, <span id="current-user" style="color: var(--primary-color);"></span></h3>
-                        <p>The <strong>Polus Space Agency</strong> has reported unusual behavior in several of their
-                            internal web systems. Logs indicate the presence of an unknown hacker group leaving cryptic
-                            references to hackers, vigilantes, pop stars, and... impostors.</p>
-                        <p>Your task is to <strong>investigate these web applications and recover the hidden
-                                flags</strong>.</p>
-                        <p class="flag-format">Flag Format: <code>DAKSHH{...}</code></p>
+                        <p>Welcome to DAKSHH CTF. Choose your category, download the files, investigate, and submit your
+                            flags.</p>
+                        <p class="flag-format">Flag Formats can be: <code>DAKSHH{...}</code> or <code>flag{...}</code>
+                            depending on the challenge instructions.</p>
                     </div>
 
                     <div class="leaderboard-panel"
@@ -52,11 +50,21 @@
                         <ul id="leaderboard-list" style="list-style-type: none; padding: 0;">
                             <li>Loading...</li>
                         </ul>
+                        <div style="text-align: center; margin-top: 15px;">
+                            <a href="./leaderboard.html"
+                                style="color: #00d2ff; text-decoration: none; font-size: 0.9em;">[ View Full Leaderboard
+                                ]</a>
+                        </div>
                     </div>
                 </div>
 
+                <!-- Web Exploitation Section -->
+                <div class="intro" style="margin-top: 40px; text-align: center;">
+                    <h2 style="color: #00ff41; font-family: 'Fira Code', monospace; letter-spacing: 2px;">WEB
+                        EXPLOITATION</h2>
+                    <p>"The Web is a Lie."</p>
+                </div>
                 <div class="challenges-grid">
-                    <!-- Challenge 1 -->
                     <div class="challenge-card">
                         <div class="card-header">
                             <span class="difficulty easy">Easy</span>
@@ -65,19 +73,13 @@
                         <h2>Impostor in the DOM</h2>
                         <p class="category">Web Exploitation – XSS</p>
                         <p class="desc">The Polus Crew Portal allows crewmates to submit anonymous feedback. However,
-                            something suspicious has been happening. Something tells you that the impostor may not be in
-                            the spaceship... but in the DOM.</p>
-                        <button class="access-btn" onclick="window.open('http://localhost:3000', '_blank')">Access
-                            Challenge</button>
-
+                            something suspicious has been happening.</p>
                         <div class="submission-area">
                             <input type="text" id="flag-1" placeholder="DAKSHH{...}" class="flag-input">
                             <button class="submit-btn" onclick="submitFlag(1)">Submit</button>
                             <div id="status-1" class="status-msg"></div>
                         </div>
                     </div>
-
-                    <!-- Challenge 2 -->
                     <div class="challenge-card">
                         <div class="card-header">
                             <span class="difficulty ez-med">Easy-Medium</span>
@@ -87,17 +89,12 @@
                         <p class="category">Web Exploitation – IDOR</p>
                         <p class="desc">You gain access to the Wayne Enterprises Employee Portal. Everything appears
                             secure... until you notice something interesting in the page source.</p>
-                        <button class="access-btn" onclick="window.open('http://localhost:5000', '_blank')">Access
-                            Challenge</button>
-
                         <div class="submission-area">
                             <input type="text" id="flag-2" placeholder="DAKSHH{...}" class="flag-input">
                             <button class="submit-btn" onclick="submitFlag(2)">Submit</button>
                             <div id="status-2" class="status-msg"></div>
                         </div>
                     </div>
-
-                    <!-- Challenge 3 -->
                     <div class="challenge-card">
                         <div class="card-header">
                             <span class="difficulty medium">Medium</span>
@@ -107,20 +104,12 @@
                         <p class="category">Web Exploitation – MITM / JWT</p>
                         <p class="desc">A suspicious music streaming service called Stateside Radio has been leaking
                             premium accounts. Analyze the captured traffic and gain administrator access.</p>
-                        <div class="assets">
-                            <a href="/assets/traffic_capture.pcap" download>Download PCAP</a>
-                        </div>
-                        <button class="access-btn" onclick="window.open('http://localhost:3003', '_blank')">Access
-                            Challenge</button>
-
                         <div class="submission-area">
                             <input type="text" id="flag-3" placeholder="DAKSHH{...}" class="flag-input">
                             <button class="submit-btn" onclick="submitFlag(3)">Submit</button>
                             <div id="status-3" class="status-msg"></div>
                         </div>
                     </div>
-
-                    <!-- Challenge 4 -->
                     <div class="challenge-card">
                         <div class="card-header">
                             <span class="difficulty hard">Hard</span>
@@ -130,9 +119,6 @@
                         <p class="category">Web Exploitation – Directory Traversal</p>
                         <p class="desc">You manage to infiltrate E Corp’s Secure Document Archive. They claim their
                             custom WAF is impenetrable. Can you peel back the layers and find the root flag?</p>
-                        <button class="access-btn" onclick="window.open('http://localhost:8080', '_blank')">Access
-                            Challenge</button>
-
                         <div class="submission-area">
                             <input type="text" id="flag-4" placeholder="DAKSHH{...}" class="flag-input">
                             <button class="submit-btn" onclick="submitFlag(4)">Submit</button>
@@ -141,30 +127,147 @@
                     </div>
                 </div>
 
+                <!-- Crypto Section -->
+                <div class="intro" style="margin-top: 60px; text-align: center;">
+                    <h2 style="color: #ffaa00; font-family: 'Fira Code', monospace; letter-spacing: 2px;">CRYPTOGRAPHY
+                        SERIES</h2>
+                    <p>Break realistic encryption implementations using thematic, pop-culture-inspired scenarios.</p>
+                </div>
+                <div class="challenges-grid">
+                    <div class="challenge-card" style="border-top: 4px solid #ffaa00;">
+                        <div class="card-header">
+                            <span class="difficulty easy" style="color: #ffaa00; border-color: #ffaa00;">Easy</span>
+                            <span class="points">100 pts</span>
+                        </div>
+                        <h2>Neo's Broken RNG</h2>
+                        <p class="category">Crypto – XOR / KPA</p>
+                        <p class="desc">Single-byte XOR key recovery via Known Plaintext Attack (KPA).</p>
+                        <div class="submission-area">
+                            <input type="text" id="flag-5" placeholder="DAKSHH{...}" class="flag-input">
+                            <button class="submit-btn" onclick="submitFlag(5)">Submit</button>
+                            <div id="status-5" class="status-msg"></div>
+                        </div>
+                    </div>
+                    <div class="challenge-card" style="border-top: 4px solid #ffaa00;">
+                        <div class="card-header">
+                            <span class="difficulty medium" style="color: #ffaa00; border-color: #ffaa00;">Medium</span>
+                            <span class="points">300 pts</span>
+                        </div>
+                        <h2>Sherlock's Cipher Notebook</h2>
+                        <p class="category">Crypto – Reused OTP</p>
+                        <p class="desc">Reused One-Time Pad (Many-Time Pad) vulnerability requiring crib-dragging.</p>
+                        <div class="submission-area">
+                            <input type="text" id="flag-6" placeholder="DAKSHH{...}" class="flag-input">
+                            <button class="submit-btn" onclick="submitFlag(6)">Submit</button>
+                            <div id="status-6" class="status-msg"></div>
+                        </div>
+                    </div>
+                    <div class="challenge-card" style="border-top: 4px solid #ffaa00;">
+                        <div class="card-header">
+                            <span class="difficulty hard" style="color: #ffaa00; border-color: #ffaa00;">Hard</span>
+                            <span class="points">500 pts</span>
+                        </div>
+                        <h2>Cyberpunk Secure Broadcast</h2>
+                        <p class="category">Crypto – RSA Broadcast</p>
+                        <p class="desc">RSA Broadcast Attack (Håstad's) exploiting a small public exponent (e=3).</p>
+                        <div class="submission-area">
+                            <input type="text" id="flag-7" placeholder="DAKSHH{...}" class="flag-input">
+                            <button class="submit-btn" onclick="submitFlag(7)">Submit</button>
+                            <div id="status-7" class="status-msg"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Misc Section -->
+                <div class="intro" style="margin-top: 60px; text-align: center;">
+                    <h2 style="color: #00d2ff; font-family: 'Fira Code', monospace; letter-spacing: 2px;">MISC
+                        CHALLENGES</h2>
+                    <p>Cyberpunk hacker-themed narrative challenges involving various data analysis skills.</p>
+                </div>
+                <div class="challenges-grid">
+                    <div class="challenge-card" style="border-top: 4px solid #00d2ff;">
+                        <div class="card-header">
+                            <span class="difficulty easy" style="color: #00d2ff; border-color: #00d2ff;">Easy</span>
+                            <span class="points">50 pts</span>
+                        </div>
+                        <h2>The Last Beacon</h2>
+                        <p class="category">Misc – Morse Code</p>
+                        <p class="desc">Decode the primitive signaling protocol from a long-dead reconnaissance
+                            satellite.</p>
+                        <div class="submission-area">
+                            <input type="text" id="flag-8" placeholder="flag{...}" class="flag-input">
+                            <button class="submit-btn" onclick="submitFlag(8)">Submit</button>
+                            <div id="status-8" class="status-msg"></div>
+                        </div>
+                    </div>
+                    <div class="challenge-card" style="border-top: 4px solid #00d2ff;">
+                        <div class="card-header">
+                            <span class="difficulty easy" style="color: #00d2ff; border-color: #00d2ff;">Easy</span>
+                            <span class="points">50 pts</span>
+                        </div>
+                        <h2>Glitched Identity</h2>
+                        <p class="category">Misc – QR Puzzle</p>
+                        <p class="desc">Repair the damaged QR code partially corrupted during transmission.</p>
+                        <div class="submission-area">
+                            <input type="text" id="flag-9" placeholder="flag{...}" class="flag-input">
+                            <button class="submit-btn" onclick="submitFlag(9)">Submit</button>
+                            <div id="status-9" class="status-msg"></div>
+                        </div>
+                    </div>
+                    <div class="challenge-card" style="border-top: 4px solid #00d2ff;">
+                        <div class="card-header">
+                            <span class="difficulty medium" style="color: #00d2ff; border-color: #00d2ff;">Medium</span>
+                            <span class="points">150 pts</span>
+                        </div>
+                        <h2>Poisoned Intelligence</h2>
+                        <p class="category">Misc – AI Data Poisoning</p>
+                        <p class="desc">Find the poisoned entries in the training dataset to uncover the hidden message.
+                        </p>
+                        <div class="submission-area">
+                            <input type="text" id="flag-10" placeholder="flag{...}" class="flag-input">
+                            <button class="submit-btn" onclick="submitFlag(10)">Submit</button>
+                            <div id="status-10" class="status-msg"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reverse Engineering Section -->
                 <div class="intro" style="margin-top: 60px; text-align: center;">
                     <h2 style="color: #ff0055; font-family: 'Fira Code', monospace; letter-spacing: 2px;">REVERSE
                         ENGINEERING SERIES</h2>
                     <p>High-difficulty challenges designed to test low-level mechanics. <br>These are not brute-force
                         challenges. They reward patience, structure, and deep reasoning.</p>
                 </div>
-
                 <div class="challenges-grid">
-                    <!-- RE Challenge Wrapper -->
+                    <div class="challenge-card" style="border-top: 4px solid #ff0055;">
+                        <div class="card-header">
+                            <span class="difficulty medium" style="color: #ff0055; border-color: #ff0055;">Medium</span>
+                            <span class="points">100 pts</span>
+                        </div>
+                        <h2>Last Words of the Hacker</h2>
+                        <p class="category">Rev Engg – XOR-based transformations</p>
+                        <p class="desc">A mysterious executable surfaced claiming to contain a final message locked
+                            behind an activation code.</p>
+                        <div class="submission-area">
+                            <input type="text" id="flag-11" placeholder="DAKSHH{...}" class="flag-input">
+                            <button class="submit-btn" onclick="submitFlag(11)">Submit</button>
+                            <div id="status-11" class="status-msg"></div>
+                        </div>
+                    </div>
                     <div class="challenge-card" style="border-top: 4px solid #ff0055;">
                         <div class="card-header">
                             <span class="difficulty hard"
-                                style="background: #3a0013; color: #ff0055; border: 1px solid #ff0055;">Insane</span>
-                            <span class="points">1000 pts</span>
+                                style="background: #3a0013; color: #ff0055; border: 1px solid #ff0055;">Hard</span>
+                            <span class="points">500 pts</span>
                         </div>
-                        <h2>The Compiler is Watching</h2>
-                        <p class="category">Reverse Engineering – LLVM IR / XOR</p>
-                        <p class="desc">Contributor: Nabhonil Bhattacharjee. <br><br>Dive into LLVM IR analysis,
-                            XOR-based transformations, and ASCII manipulation. Recommended tools: Ghidra, IDA, clang,
-                            CyberChef.</p>
-                        <div class="assets">
-                            <a href="#"
-                                onclick="alert('Binaries will be released at the designated CTF start time.')">Download
-                                Challenge Binaries</a>
+                        <h2>Are You Better Than Assembly?</h2>
+                        <p class="category">Rev Engg – LLVM IR / XOR</p>
+                        <p class="desc">Dive into LLVM IR analysis, XOR-based transformations, and ASCII manipulation.
+                            Beware of traps and decoys.</p>
+                        <div class="submission-area">
+                            <input type="text" id="flag-12" placeholder="DAKSHH{...}" class="flag-input">
+                            <button class="submit-btn" onclick="submitFlag(12)">Submit</button>
+                            <div id="status-12" class="status-msg"></div>
                         </div>
                     </div>
                 </div>

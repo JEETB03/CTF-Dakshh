@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Aegis Drone Network</title>
+    <style>
+        body {
+            background-color: #0d1117;
+            color: #00ff41;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #ff003c;
+            text-shadow: 0 0 5px #ff003c;
+        }
+
+        .terminal {
+            border: 1px solid #00ff41;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 0 10px #00ff41;
+            max-width: 800px;
+        }
+
+        input[type="text"] {
+            background: #000;
+            color: #00ff41;
+            border: 1px solid #00ff41;
+            padding: 5px;
+            width: 70%;
+        }
+
+        button {
+            background: #00ff41;
+            color: #000;
+            border: none;
+            padding: 6px 15px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #ff003c;
+            color: #fff;
+        }
+
+        .links a {
+            color: #00d2ff;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Aegis Drone Network - Central AI Node</h1>
+    <p>Connected to 4,281 autonomous units.</p>
+    <p>AI ML Model Status: <b>ONLINE & ENFORCING</b></p>
+
+    <div class="terminal">
+        <h3>TEST FLIGHT COMMAND</h3>
+        <p>Enter a command to test the autonomous filter model:</p>
+        <input type="text" id="cmdInput" placeholder="e.g. return_to_base">
+        <button onclick="testCmd()">EXECUTE</button>
+        <p id="output"></p>
+    </div>
+
+    <div class="links">
+        <h3>Investigator Resources</h3>
+        <p>Suspicious activity detected in recent AI update. Review the training data if necessary.</p>
+        <a href="/static/dataset.csv" download>Download dataset.csv</a> |
+        <a href="/static/train_model.py" download>Download train_model.py</a> |
+        <a href="/static/README.txt" download>Download README.txt</a>
+    </div>
+
+    <script>
+        function testCmd() {
+            var cmd = document.getElementById('cmdInput').value;
+            fetch('/api/test_command', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ command: cmd })
+            })
+                .then(r => r.json())
+                .then(data => {
+                    var out = document.getElementById('output');
+                    if (data.status === 'safe') {
+                        if (data.warning) {
+                            out.innerHTML = "<span style='color:red;'>[WARNING] " + data.message + "</span>";
+                        } else {
+                            out.innerHTML = "<span style='color:green;'>[SAFE] " + data.message + "</span>";
+                        }
+                    } else {
+                        out.innerHTML = "<span style='color:orange;'>[BLOCKED] " + data.message + "</span>";
+                    }
+                });
+        }
+    </script>
+</body>
+
+</html>

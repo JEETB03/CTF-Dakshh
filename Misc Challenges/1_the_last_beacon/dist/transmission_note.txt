@@ -1,0 +1,7 @@
+The satellite uses a very primitive signalling protocol.
+
+Short beep = dot
+Long beep = dash
+Pause = next character
+
+(Note: Once decoded, format the result into flag{lowercase_with_underscores})

@@ -36,17 +36,29 @@ const db = new sqlite3.Database(dbPath, (err) => {
 });
 
 const FLAGS = {
+    // Web
     1: 'DAKSHH{sus_in_the_dom}',
     2: 'DAKSHH{batman_needs_access_control}',
     3: 'DAKSHH{stateside_man_in_the_middle}',
-    4: 'DAKSHH{ecorp_archive_traversal_bypassed}'
+    4: 'DAKSHH{ecorp_archive_traversal_bypassed}',
+    // Crypto
+    5: 'DAKSHH{n30_f0und_th3_r3d_p1ll_x0r}',
+    6: 'DAKSHH{3l3m3nt4ry_my_d34r_w4ts0n_0tp}',
+    7: 'DAKSHH{n0_c0rp0_n3tw0rk_1s_s4f3_fr0m_rs4}',
+    // Misc
+    8: 'flag{satellite_signal_restored}',
+    9: 'flag{qr_codes_never_lie}',
+    10: 'flag{training_data_poisoned}',
+    // Rev Engg
+    11: 'DAKSHH{H1DD3N_C0D3}',
+    12: 'DAKSHH{7h15_f14g_15_v3ry_v3ry_l0ng_4nd_1_h0p3_th3r3_4r3_n0_7yp0}'
 };
 
 const POINTS = {
-    1: 100,
-    2: 200,
-    3: 300,
-    4: 500
+    1: 100, 2: 200, 3: 300, 4: 500,
+    5: 100, 6: 300, 7: 500,
+    8: 50, 9: 50, 10: 150,
+    11: 100, 12: 500
 };
 
 // Helper: Get user, create if not exists
@@ -134,6 +146,22 @@ app.get('/api/leaderboard', (req, res) => {
     db.all(`SELECT username, score FROM users ORDER BY score DESC LIMIT 10`, (err, rows) => {
         if (err) {
             return res.status(500).json({ error: 'Failed to fetch leaderboard' });
+        }
+        res.json(rows);
+    });
+});
+
+app.get('/api/leaderboard/full', (req, res) => {
+    const query = `
+        SELECT u.username, u.score, COUNT(a.id) as solved_count
+        FROM users u
+        LEFT JOIN attempts a ON u.username = a.username AND a.solved = 1
+        GROUP BY u.username
+        ORDER BY u.score DESC, solved_count DESC
+    `;
+    db.all(query, (err, rows) => {
+        if (err) {
+            return res.status(500).json({ error: 'Failed to fetch full leaderboard' });
         }
         res.json(rows);
     });

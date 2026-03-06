@@ -1,0 +1,27 @@
+name: "The Last Beacon"
+author: "Antigravity"
+category: Misc
+description: |
+  **Story**
+  A long-dead reconnaissance satellite suddenly transmitted a **short distress signal** before shutting down again.
+  
+  The signal was intercepted by ground stations, but engineers say the transmission looks like **very old communication technology**.
+  
+  Some interns think it’s **Morse code**.
+  
+  Decode the signal and recover the hidden message before the satellite drifts out of range.
+  
+  *(Format: `flag{lowercase_with_underscores}`)*
+value: 50
+type: standard
+flags:
+  - flag{satellite_signal_restored}
+tags:
+  - morse
+  - osint
+  - easy
+files:
+  - dist/signal.wav
+  - dist/transmission_note.txt
+state: visible
+version: "0.1"

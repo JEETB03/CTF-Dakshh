@@ -64,6 +64,12 @@ Welcome to the **DAKSHH CTF Reverse Engineering Series**. This section contains 
 These are not brute-force challenges.  
 They reward patience, structure, and deep reasoning.
 
+**Challenges included:**
+1. **Last Words of the Hacker** (Medium)
+    - *Concept*: XOR-based transformations
+2. **Are You Better Than Assembly?** (Hard)
+    - *Concept*: LLVM IR / XOR / String manipulation
+
 ### 🛠 Recommended Tools
 - Ghidra  
 - IDA / Binary Ninja  
@@ -130,3 +136,21 @@ All flags follow the format: `DAKSHH{example_flag_here}`
     - *Concept*: Baby-step Giant-step algorithm to solve a DLP and recover the AES decryption key for the encrypted flag.
 
 All flags follow the format: `DAKSHH{example_flag_here}`
+
+---
+
+**Contributor:** Antigravity
+
+## 🕵️‍♂️ Misc Challenges
+
+Cyberpunk hacker-themed narrative challenges involving various data analysis skills.
+
+**Challenges included:**
+1. **The Last Beacon** (Easy)
+    - *Theme*: Morse Code / Signal Analysis
+2. **Glitched Identity** (Easy)
+    - *Theme*: QR Code Recovery / Error Correction
+3. **Poisoned Intelligence** (Medium)
+    - *Theme*: AI Data Poisoning / Dataset Inspection
+
+These unique challenges have an alternative flag format: `flag{example_flag_here}`
