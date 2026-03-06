@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚌 Holiday Bus Investigation — CTF Writeup
 
-## Getting Started
+> **Category:** OSINT  
+> **Flag:** `dakshh{ditobus_4646_UY89703}`
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🧩 Challenge Overview
+
+You are given an image and must use open-source intelligence (OSINT) techniques to identify a specific bus, including its company name, route number, and vehicle registration number.
+
+---
+
+## 🔍 Solution Walkthrough
+
+### Step 1 — Political Poster Clue
+
+The bottom poster in the image shows **Rasmus Hylleberg**, a political candidate for the **Roskilde constituency**.
+
+> This narrows the location down to **Roskilde, Denmark**.
+
+---
+
+### Step 2 — Storefront Clue
+
+A **7-Eleven (7/11)** store is visible in the image. Searching for **"7-Eleven Roskilde"** on [Google Maps](https://maps.google.com) reveals only a handful of locations, making it much easier to pinpoint the exact street.
+
+---
+
+### Step 3 — Bus Identification
+
+Using **Google Maps Street View** near the identified 7-Eleven location in Roskilde, the buses in the area can be inspected. The leftmost bus reveals:
+
+| Detail           | Value      |
+| ---------------- | ---------- |
+| **Bus Company**  | `ditobus`  |
+| **Route Number** | `4646`     |
+
+---
+
+### Step 4 — Vehicle Registration Lookup
+
+Searching **"ditobus 4646"** on vehicle information databases leads to records listing full details about that specific bus.
+
+From these databases, the registration number is found:
+
+| Detail                  | Value       |
+| ----------------------- | ----------- |
+| **Registration Number** | `UY89703`   |
+
+---
+
+## 🏁 Flag
+
+```
+dakshh{ditobus_4646_UY89703}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🛠️ Tools & Techniques Used
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Google Maps / Street View** — Geo-locating the scene
+- **Google Search** — Finding 7-Eleven locations in Roskilde
+- **Vehicle Registration Databases** — Looking up bus details by company and route number
+- **Visual Analysis** — Reading posters and storefront signs in the image
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 💡 Key Takeaways
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Political posters** can be powerful geolocation clues — they often reference specific constituencies or regions.
+2. **Recognizable storefronts** (like 7-Eleven) combined with a city name drastically reduce the search area.
+3. **Street View** is invaluable for confirming on-the-ground details like bus numbers and company names.
+4. **Public vehicle databases** can map a company + route number to a specific registration plate.
