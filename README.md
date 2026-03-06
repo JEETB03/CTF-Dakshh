@@ -4,7 +4,8 @@ Welcome to the **DAKSHH CTF Challenge Series**. This repository contains a colle
 
 ---
 
-**Contributor:** JEET BISWAS
+**Contributor:** JEET BISWAS (JEETB03)
+
 
 ## 🌐 Web Exploitation Series
 
@@ -28,7 +29,8 @@ All flags follow the format: `DAKSHH{example_flag_here}`
 
 ---
 
-**Contributor:** JEET BISWAS
+**Contributor:** JEET BISWAS (JEETB03)
+
 
 ## 🔐 Crypto Challenge Series
 
@@ -139,7 +141,7 @@ All flags follow the format: `DAKSHH{example_flag_here}`
 
 ---
 
-**Contributor:** Antigravity
+**Contributor:** JEET BISWAS (JEETB03)
 
 ## 🕵️‍♂️ Misc Challenges
 
