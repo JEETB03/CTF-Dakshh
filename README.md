@@ -53,7 +53,7 @@ All flags follow the format: `DAKSHH{example_flag_here}`
 
 ---
 
-**Contributor:** Nabhonil Bhattacharjee
+**Contributor:** Nabhonil Bhattacharjee (nabhocharger69)
 
 Welcome to the **DAKSHH CTF Reverse Engineering Series**. This section contains high-difficulty reverse engineering challenges designed to test your understanding of:
 
