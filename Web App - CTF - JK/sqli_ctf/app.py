@@ -15,25 +15,26 @@ def get_db_connection():
 def home():
   return render_template("index.html")
 
-#random hidden path to create db table
-@app.route("/iusdyfuhu")
-def initial():
-  conn = get_db_connection()
-  cur = conn.cursor()
+def init_db():
+    conn = get_db_connection()
+    cur = conn.cursor()
 
-  cur.execute('''
-  create table if not exists users (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  username varchar(100),
-  password varchar(100)
-  );
-  ''')
-  cur.execute("insert into users (username, password) select 'admin', 'secret_password_do_not_guess' where not exists (select 1 from users where username='admin')")
+    cur.execute('''
+    create table if not exists users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username varchar(100),
+    password varchar(100)
+    );
+    ''')
+    cur.execute("insert into users (username, password) select 'admin', 'secret_password_do_not_guess' where not exists (select 1 from users where username='admin')")
 
-  conn.commit()
-  cur.close()
-  conn.close()
-  return "Table created successfully!!"
+    conn.commit()
+    cur.close()
+    conn.close()
+    print("[*] Database initialized. Admin user ensured.")
+
+# Run init immediately on startup
+init_db()
 
 @app.route("/register", methods=["POST"])
 def register():
@@ -84,15 +85,31 @@ def login():
     if t:
       if str(t[0]['username']) == 'admin':
         return '''
-<center>
-<h1> WELCOME ADMIN </h1>
-<br><br>
-<h3>
-You bypassed the authentication successfully!
-</h3>
-<br><br>
-<h2>Flag: DAKSHH{sqli_3asy_byP4ss_2026}</h2>
-</center>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Access Granted</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #030a16; color: #00f0ff; font-family: 'Share Tech Mono', monospace; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; background-image: radial-gradient(circle, rgba(0, 240, 255, 0.1) 0%, transparent 60%); }
+        .box { text-align: center; border: 1px solid #00f0ff; background: rgba(0, 20, 50, 0.8); padding: 50px; border-radius: 8px; box-shadow: 0 0 30px rgba(0, 240, 255, 0.2), inset 0 0 20px rgba(0, 240, 255, 0.1); width: 600px; }
+        h1 { color: #ff2a2a; text-shadow: 0 0 10px rgba(255, 42, 42, 0.6); letter-spacing: 5px; margin-bottom: 20px; font-size: 2.5rem; text-transform: uppercase; }
+        h3 { color: #00f0ff; letter-spacing: 2px; margin-bottom: 40px; font-weight: normal; }
+        .flag { background: rgba(0, 240, 255, 0.1); padding: 20px; border: 1px dashed #00f0ff; border-radius: 4px; font-size: 1.5rem; color: #fff; text-shadow: 0 0 10px #00f0ff; letter-spacing: 3px; word-break: break-all; margin: 0 auto; display: inline-block; }
+        .glitch { animation: glitch-skew 1s infinite linear alternate-reverse; }
+        @keyframes glitch-skew { 0% { transform: skew(0deg); } 20% { transform: skew(-10deg); } 40% { transform: skew(10deg); } 60% { transform: skew(-5deg); } 80% { transform: skew(5deg); } 100% { transform: skew(0deg); } }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1 class="glitch">Access Granted: ADMIN</h1>
+        <h3>Authentication Bypass Successful. Query Executed.</h3>
+        <div class="flag">DAKSHH{sqli_3asy_byP4ss_2026}</div>
+    </div>
+</body>
+</html>
 '''
       else:
         return "Hello " + str(t[0]['username'])
