@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚲 Bike Shop Mystery — OSINT CTF Writeup
 
-## Getting Started
+## 🏷️ Challenge Overview
 
-First, run the development server:
+| Detail       | Info                          |
+|--------------|-------------------------------|
+| **Category** | OSINT                         |
+| **Objective**| Find the contact phone number of the bike shop |
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+You are given an image of a street scene in **Kyoto, Japan**. Your mission is to identify the bike shop in the image and find their **contact phone number**.
+
+---
+
+## 🔍 Solution Walkthrough
+
+### Step 1 — Identify the Clue in the Image
+
+Zoom into the image carefully. On closer inspection, you can spot a **sign** on the storefront that reads:
+
+> **"Alex Moulton"**
+
+This is a key clue — it refers to a specific brand/type of bicycle.
+
+---
+
+### Step 2 — Research "Alex Moulton"
+
+Googling **"Alex Moulton"** returns results about the **Moulton Bicycle Company**, a British manufacturer known for small-wheeled bicycles designed by Dr. Alex Moulton.
+
+This confirms the shop is related to Moulton bicycles, but we still need to find the exact shop in **Kyoto**.
+
+---
+
+### Step 3 — Narrow Down the Location
+
+Since we know the image is from Kyoto and the shop deals in Alex Moulton bicycles, searching for:
+
+> **"Kyoto Alex Moulton"**
+
+returns results pointing to a shop called **Moku2+4** (also written as モク2+4), a bicycle shop in Kyoto that specializes in Moulton bikes.
+
+---
+
+### Step 4 — Find the Contact Number
+
+Visit the **Moku2+4** website and navigate through their pages (typically the **About** or **Contact** page). There you'll find the shop's contact phone number.
+
+---
+
+## 🏁 Flag
+
+```
+dakshh{075–326–3027}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+> ⚠️ *The flag format wraps the phone number found on the shop's website.*
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📝 Key Takeaways
 
-## Learn More
+- **Zoom in on images** — Small details like signs and text can be critical clues.
+- **Cross-reference keywords** — Combining a brand name with a known location greatly narrows search results.
+- **Explore official websites** — Contact information is almost always available on business websites.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛠️ Tools Used
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Tool              | Purpose                                    |
+|-------------------|--------------------------------------------|
+| Image Viewer      | Zooming into the image to read the sign    |
+| Google Search     | Researching "Alex Moulton" and the shop    |
+| Shop Website      | Finding the contact phone number           |
