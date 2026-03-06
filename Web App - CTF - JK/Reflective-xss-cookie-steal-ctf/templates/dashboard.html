@@ -1,405 +1,287 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style2.css') }}">
-	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-	<!------ Include the above in your HEAD tag ---------->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Dashboard — Venom Echo</title>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Orbitron:wght@500;700&display=swap"
+		rel="stylesheet">
 	<style>
-		body {
-			background-color: #dedede;
-		}
-
-		.topbar {
-			background: #2A3F54;
-			border-color: #2A3F54;
-			border-radius: 0px;
-		}
-
-		.topbar .navbar-header a {
-			color: #ffffff;
-		}
-
-		.wrapper {
-			padding-left: 0px;
-			-webkit-transition: all 0.5s ease;
-			-moz-transition: all 0.5s ease;
-			-o-transition: all 0.5s ease;
-			transition: all 0.5s ease;
-		}
-
-		.sidebar {
-			z-index: 1000;
-			position: fixed;
-			top: 50px;
-			left: -50px;
-			width: 50px;
-			height: 100%;
-			overflow-y: auto;
-			background: #2A3F54;
-			color: #ffffff;
-			-webkit-transition: all 0.5s ease;
-			-moz-transition: all 0.5s ease;
-			-o-transition: all 0.5s ease;
-			transition: all 0.5s ease;
-		}
-
-		.main {
-			width: 100%;
-			position: relative;
-			padding-bottom: 20px;
-		}
-
-		.wrapper.toggled {
-			padding-left: 50px;
-		}
-
-		.wrapper.toggled .sidebar {
-			left: 0;
-		}
-
-		/* Sidebar Styles */
-
-		.sidebar-nav {
-			position: absolute;
-			top: 52px;
-			width: 50px;
+		* {
 			margin: 0;
 			padding: 0;
-			list-style: none;
+			box-sizing: border-box;
 		}
 
-		.sidebar-nav li {
-			line-height: 40px;
+		body {
+			font-family: 'Fira Code', monospace;
+			background-color: #0a0a0a;
+			color: #c0c0c0;
+			min-height: 100vh;
 		}
 
-		.sidebar-nav li a {
-			display: block;
-			text-decoration: none;
-			color: #e8e8e8;
-			padding: 0;
-			text-align: center;
-		}
-
-		.sidebar-nav li a:hover,
-		.sidebar-nav li.active a {
-			text-decoration: none;
-			color: #fff;
-			background: #fff;
-			background: rgba(255, 255, 255, 0.2);
-		}
-
-		.sidebar-nav li a:active,
-		.sidebar-nav li a:focus {
-			text-decoration: none;
-		}
-
-		.sidebar-nav li span,
-		.subbar li span {
-			display: none;
-		}
-
-		nav.subbar {
-			position: relative;
-			width: 100%;
-			border-radius: 0px;
-			background: #fff;
-			margin: 50px 0 -50px 0;
-			padding: 10px 0 0 0;
-			z-index: 2;
-		}
-
-		nav.subbar>ul.nav.nav-tabs {
-			padding: 0 5px;
-		}
-
-		nav.subbar>ul.nav.nav-tabs>li.active>a {
-			background: #dedede;
-			border-top: 1px solid #a6a6a6;
-			border-left: 1px solid #a6a6a6;
-			border-right: 1px solid #a6a6a6;
-			border-radius: 0px;
-		}
-
-		.content {
-			margin-top: 70px;
+		/* Top Navigation */
+		.topnav {
+			background: linear-gradient(90deg, #0d0d0d, #141414);
+			border-bottom: 1px solid rgba(0, 255, 65, 0.15);
 			padding: 0 30px;
+			height: 56px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			z-index: 100;
 		}
 
-		@media(min-width:768px) {
-			.subbar li span {
-				display: inline;
+		.topnav-brand {
+			font-family: 'Orbitron', sans-serif;
+			font-size: 1rem;
+			color: #00ff41;
+			letter-spacing: 2px;
+			text-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+		}
+
+		.topnav-links {
+			display: flex;
+			gap: 20px;
+			align-items: center;
+		}
+
+		.topnav-links a {
+			color: #3a7a3a;
+			text-decoration: none;
+			font-size: 0.75rem;
+			letter-spacing: 1px;
+			transition: color 0.3s;
+			padding: 6px 12px;
+			border-radius: 4px;
+		}
+
+		.topnav-links a:hover {
+			color: #00ff41;
+			background: rgba(0, 255, 65, 0.08);
+		}
+
+		.topnav-links a.danger {
+			color: #ff4040;
+		}
+
+		.topnav-links a.danger:hover {
+			color: #ff6666;
+			background: rgba(255, 50, 50, 0.08);
+		}
+
+		/* Main Content */
+		.main-content {
+			margin-top: 56px;
+			padding: 30px;
+			max-width: 1000px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		/* Cards */
+		.card {
+			background: linear-gradient(145deg, #0d0d0d, #141414);
+			border: 1px solid rgba(0, 255, 65, 0.12);
+			border-radius: 10px;
+			margin-bottom: 24px;
+			overflow: hidden;
+			box-shadow: 0 0 20px rgba(0, 255, 65, 0.04);
+		}
+
+		.card-header {
+			background: rgba(0, 255, 65, 0.06);
+			padding: 14px 20px;
+			border-bottom: 1px solid rgba(0, 255, 65, 0.1);
+			font-family: 'Orbitron', sans-serif;
+			font-size: 0.75rem;
+			color: #00ff41;
+			letter-spacing: 2px;
+			text-transform: uppercase;
+		}
+
+		.card-body {
+			padding: 20px;
+			line-height: 1.7;
+			font-size: 0.85rem;
+			color: #9a9a9a;
+		}
+
+		/* Grid */
+		.grid {
+			display: grid;
+			grid-template-columns: 2fr 1fr;
+			gap: 24px;
+		}
+
+		@media (max-width: 768px) {
+			.grid {
+				grid-template-columns: 1fr;
 			}
 		}
 
-		@media(min-width:992px) {
-			.wrapper {
-				padding-left: 50px;
-			}
-
-			.sidebar {
-				left: 0;
-				width: 50px;
-			}
-
-			.wrapper.toggled {
-				padding-left: 200px;
-			}
-
-			.wrapper.toggled .sidebar,
-			.wrapper.toggled .sidebar-nav {
-				width: 200px;
-			}
-
-			.wrapper.toggled .sidebar-nav li a {
-				text-align: left;
-				padding: 0 0 0 10px;
-			}
-
-			.wrapper.toggled .sidebar-nav li span {
-				display: inline;
-			}
-
+		/* Welcome card */
+		.welcome-name {
+			color: #00ff41;
+			font-weight: 600;
 		}
 
-		.navbar-btn {
-			background: none;
-			border: none;
-			height: 35px;
-			min-width: 35px;
-			color: #fff;
+		/* Flag display */
+		.flag-box {
+			background: rgba(0, 255, 65, 0.05);
+			border: 1px solid rgba(0, 255, 65, 0.25);
+			border-radius: 8px;
+			padding: 16px;
+			margin-top: 12px;
+			text-align: center;
+			word-break: break-all;
 		}
 
-		.navbar-text {
-			margin-top: 14px;
-			margin-bottom: 14px;
+		.flag-label {
+			font-size: 0.65rem;
+			color: #3a7a3a;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+			margin-bottom: 8px;
 		}
 
-		@media (min-width: 768px) {
-			.navbar-text {
-				float: left;
-				margin-left: 15px;
-				margin-right: 15px;
+		.flag-value {
+			font-size: 0.95rem;
+			color: #00ff41;
+			text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+			animation: glow-pulse 2s infinite;
+		}
+
+		@keyframes glow-pulse {
+
+			0%,
+			100% {
+				opacity: .7
 			}
+
+			50% {
+				opacity: 1
+			}
+		}
+
+		/* Report link */
+		.report-link {
+			display: block;
+			padding: 12px;
+			text-align: center;
+			background: rgba(255, 50, 50, 0.08);
+			border: 1px solid rgba(255, 50, 50, 0.2);
+			border-radius: 6px;
+			color: #ff4040;
+			text-decoration: none;
+			font-size: 0.78rem;
+			font-weight: 600;
+			transition: all 0.3s;
+			margin-top: 12px;
+		}
+
+		.report-link:hover {
+			background: rgba(255, 50, 50, 0.15);
+			box-shadow: 0 0 15px rgba(255, 50, 50, 0.15);
+		}
+
+		/* Hidden link styling */
+		.hidden-link {
+			color: transparent;
+			text-decoration: none;
+		}
+
+		.hidden-link:hover {
+			color: rgba(0, 255, 65, 0.2);
+		}
+
+		/* Scanline */
+		.scanline {
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 65, 0.01) 2px, rgba(0, 255, 65, 0.01) 4px);
+			pointer-events: none;
+			z-index: 999;
 		}
 	</style>
 </head>
 
 <body>
-	<link href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css" rel="stylesheet" media="screen">
+	<div class="scanline"></div>
 
-	<nav class="navbar navbar-default navbar-fixed-top topbar">
-		<div class="container-fluid">
-
-			<div class="navbar-header">
-
-				<a href="#" class="navbar-brand">
-					<span class="visible-xs">https://bit.ly/2ULzsZQ</span>
-					<span class="hidden-xs">Weekly CTF</span>
-				</a>
-
-				<p class="navbar-text">
-					<a href="#" class="sidebar-toggle">
-						<i class="fa fa-bars"></i>
-					</a>
-				</p>
-
-			</div>
-
-			<div class="navbar-collapse collapse" id="navbar-collapse-main">
-
-				<ul class="nav navbar-nav navbar-right">
-
-					<li>
-						<button class="navbar-btn">
-							<i class="fa fa-bell"></i>
-						</button>
-					</li>
-
-				</ul>
-
-			</div>
+	<nav class="topnav">
+		<div class="topnav-brand">🕷️ Venom Echo</div>
+		<div class="topnav-links">
+			<a href="/dashboard">Dashboard</a>
+			<a href="/report" class="danger">🚨 Report</a>
+			<a href="/logout">Logout</a>
 		</div>
 	</nav>
 
-	<article class="wrapper">
+	<div class="main-content">
+		<div class="grid">
+			<!-- Main Story Card -->
+			<div class="card">
+				<div class="card-header">📡 Intelligence Brief</div>
+				<div class="card-body">
+					This site was one of the popular sites once upon a time. A script kiddie black hat
+					hacker has hacked this site and took control of the admin panel and deleted everything.
+					<br><br>
+					If you are reading this then surely you will be a white hat hacker, so please help
+					the owner of this site to rescue the site again!!
+					<br><br>
+					After the hack, the attacker contacted the owner through WhatsApp. The only way to reach him
+					is his WhatsApp!
+					<br><br>
+					<span style="color:#ff4040;">[Note: If you request the site back, he demands $10,000 — waste of time
+						begging him]</span>
+					<br><br>
+					<span style="color:#3a7a3a;">whatsapp_number_of_hacker:</span> <span
+						style="color:#00ff41;">wa.me/+18135483374</span>
+				</div>
+			</div>
 
-		<aside class="sidebar">
-			<ul class="sidebar-nav">
-				<li class="active"><a href="#dashboard" data-toggle="tab"><i class="fa fa-dashboard"></i>
-						<span>Dashboard</span></a></li>
-				<li><a href="#configuration" data-toggle="tab"><i class="fa fa-cogs"></i> <span>Configuration</span></a>
-				</li>
-				<li><a href="#users" data-toggle="tab"><i class="fa fa-users"></i> <span>Users</span></a></li>
-				<li><a href="#mail" data-toggle="tab"><i class="fa fa-envelope"></i> <span>Mail</span></a></li>
-			</ul>
-		</aside>
+			<!-- Right Sidebar -->
+			<div>
+				<!-- Welcome Card -->
+				<div class="card">
+					<div class="card-header">👤 User Panel</div>
+					<div class="card-body">
+						Hello <span class="welcome-name">{{ name }}</span>
+						<br><br>
+						The sidebar is naturally responsive. You can explore the system and
+						<a href="/deshboard" class="hidden-link">​​</a> investigate the breach.
 
-		<section class="main">
-
-			<section class="tab-content">
-
-				<section class="tab-pane active fade in content" id="dashboard">
-
-					<div class="col-xs-12 col-sm-9">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								Short Story
-							</div>
-							<div class="panel-body">
-								This site was one of the popular sites once upon a time, A script kiddie black hat
-								hacker has hacked this site and he took control of the admin panel and deleted
-								everything.
-								If you are reading this then surely you will be a white hat hacker, so please help him
-								the owner of this site to rescue the site again !!
-								<br><br>
-								After he has hacked, he has contacted the owner of this site through Whatsapp. so the
-								only way to reach him is his whatsapp !
-								<br>
-								[Note : If you request the site to him he is demanding 10000$ to return that, so waste
-								of time in begging him ]
-								<br><br>
-								whatsapp_number_of_hacker : wa.me/+18135483374
-								<br /><br /><br /><br /></br><br><br>
-							</div>
+						{% if flag %}
+						<div class="flag-box">
+							<div class="flag-label">🏆 Captured Flag</div>
+							<div class="flag-value">{{ flag }}</div>
 						</div>
+						{% endif %}
 					</div>
+				</div>
 
-					<div class="col-xs-12 col-sm-3">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								Hello {{ name }}
-							</div>
-							<div class="panel-body">
-								The sidebar is naturally responsive according to screen width. You can toggle it using
-								the menu button in the topbar. Test it out by increasing/decreasing your screen width
-								and <a href="/deshboard">‎‎</a> watch it respond. <br><br>
-								<pre>{{ flag }}</pre>
-								<br>
-							</div>
-						</div>
-
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								Warning
-							</div>
-							<div class="panel-body">
-								<a href="/logout">Logout from the account</a><br><br>
-								<a href="/report" style="color: red; font-weight: bold;">[!] Report malicious activity
-									to Admin</a>
-							</div>
-						</div>
+				<!-- Actions Card -->
+				<div class="card">
+					<div class="card-header">⚡ Actions</div>
+					<div class="card-body">
+						<a href="/logout" style="color:#00ff41; text-decoration:none; font-size:0.8rem;">→ Logout from
+							account</a>
+						<a href="/report" class="report-link">🚨 Report Malicious Activity to Admin</a>
 					</div>
-
-					</div>
-
-				</section>
-
-				<section class="tab-pane fade" id="configuration">
-					<nav class="subbar">
-						<ul class="nav nav-tabs">
-							<li class="active"><a href="#access" data-toggle="tab"><i class="fa fa-code"></i>
-									<span>System</span></a></li>
-							<li><a href="#roles" data-toggle="tab"><i class="fa fa-user"></i> <span>Roles</span></a>
-							</li>
-						</ul>
-					</nav>
-
-					<section class="tab-content content">
-
-						<section class="tab-pane active fade in" id="access">
-
-							<div class="row">
-								<div class="col-xs-12 col-sm-4">
-									<div class="panel panel-default">
-										<div class="panel-heading">
-											Something
-										</div>
-										<div class="panel-body">
-											<br /><br /><br /><br />
-										</div>
-									</div>
-								</div>
-
-								<div class="col-xs-12 col-sm-4">
-									<div class="panel panel-default">
-										<div class="panel-heading">
-											Something
-										</div>
-										<div class="panel-body">
-											<br /><br /><br /><br />
-										</div>
-									</div>
-								</div>
-
-								<div class="col-xs-12 col-sm-4">
-									<div class="panel panel-default">
-										<div class="panel-heading">
-											Something
-										</div>
-										<div class="panel-body">
-											<br /><br /><br /><br />
-										</div>
-									</div>
-								</div>
-							</div>
-
-						</section>
-
-						<section class="tab-pane fade" id="roles">
-
-							<div class="row">
-								<div class="col-xs-12 col-sm-8 col-md-9">
-									<div class="panel panel-default">
-										<div class="panel-heading">
-											Something
-										</div>
-										<div class="panel-body">
-											<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-										</div>
-									</div>
-								</div>
-
-								<div class="hidden-xs col-sm-4 col-md-3">
-									<div class="panel panel-default">
-										<div class="panel-heading">
-											Something
-										</div>
-										<div class="panel-body">
-											<br /><br /><br />
-										</div>
-									</div>
-
-									<div class="panel panel-default">
-										<div class="panel-heading">
-											Something
-										</div>
-										<div class="panel-body">
-											<br /><br /><br />
-										</div>
-									</div>
-								</div>
-							</div>
-						</section>
-
-					</section>
-
-				</section>
-
-				<section class="tab-pane fade" id="users">
-
-				</section>
-
-				<section class="tab-pane fade" id="mail">
-
-				</section>
-
-			</section>
-		</section>
-
-	</article>
-
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 
 </html>
