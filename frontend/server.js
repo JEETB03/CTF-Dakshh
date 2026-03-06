@@ -51,14 +51,28 @@ const FLAGS = {
     10: 'flag{training_data_poisoned}',
     // Rev Engg
     11: 'DAKSHH{H1DD3N_C0D3}',
-    12: 'DAKSHH{7h15_f14g_15_v3ry_v3ry_l0ng_4nd_1_h0p3_th3r3_4r3_n0_7yp0}'
+    12: 'DAKSHH{7h15_f14g_15_v3ry_v3ry_l0ng_4nd_1_h0p3_th3r3_4r3_n0_7yp0}',
+    // Web (Extended)
+    13: 'DAKSHH{sqli_3asy_byP4ss_2026}',
+    14: 'DAKSHH{w4f_byp4ss_w1th0ut_c0mp4r1s0ns}',
+    15: 'DAKSHH{un1c0d3_n0rm4l1z4t10n_sqli_ph4nt0m}',
+    16: 'DAKSHH{h1nglish_hunt_3asy}',
+    17: 'DAKSHH{css_gh0st_m3d1um}',
+    18: 'DAKSHH{css_gh0st_m3d1um_h4rd_fr4gm3nt_b0ss}',
+    19: 'DAKSHH{GrEaT_yOu_ReCoVeReD_tHiS_sItE_2026}',
+    20: 'DAKSHH{h0st_h34d3r_p01s0n1ng_f0r_t4h_w1n}',
+    // Crypto (Extended)
+    21: 'DAKSHH{b1g_int3g3rs_n33d_b1gg3r_st3ps}'
 };
 
 const POINTS = {
     1: 100, 2: 200, 3: 300, 4: 500,
     5: 100, 6: 300, 7: 500,
     8: 50, 9: 50, 10: 150,
-    11: 100, 12: 500
+    11: 100, 12: 500,
+    13: 100, 14: 300, 15: 500, 16: 100,
+    17: 300, 18: 500, 19: 300, 20: 300,
+    21: 300
 };
 
 // Helper: Get user, create if not exists
