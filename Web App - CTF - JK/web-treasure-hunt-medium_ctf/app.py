@@ -43,7 +43,7 @@ def vault():
     if session.get('vault_unlocked'):
         return render_template('vault.html', flag=MEDIUM_FLAG)
     
-    return redirect("/hidden_shadow")
+    return render_template('error.html', error_title="UNAUTHORIZED ACCESS", error_msg="You must enter the vault password to view this area.", back_url="/hidden_shadow")
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5005, debug=True)
