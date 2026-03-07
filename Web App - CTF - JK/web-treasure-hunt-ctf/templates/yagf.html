@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="center">
+    <h2>[ ADMIN AUTHENTICATION ]</h2>
+    <p>Enter encrypted credentials to proceed.</p>
+    <br>
+
+    <form action="/validate" method="post">
+        <div>
+            <label style="color: var(--text-muted); font-family: 'Share Tech Mono';">USERNAME</label><br>
+            <input type="text" name="usr" required autocomplete="off">
+        </div>
+        <div>
+            <label style="color: var(--text-muted); font-family: 'Share Tech Mono';">PASSWORD</label><br>
+            <input type="password" name="pwd" required>
+        </div>
+        <button type="submit">AUTHENTICATE</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block comments %}
+<!-- DAKSHH{4uth_p0rt4l_h1dd3n_k3y} -->
+<!-- Backup configuration token: YW1pX2hhY2tlcl9ib2xjaGk6aGl0a19zeXN0ZW1faDRja2Vk -->
+{% endblock %}

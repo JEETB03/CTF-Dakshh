@@ -1,1 +1,20 @@
-/dshgfayiurhaejkhbdsajvn
+ Volume in drive D is New Volume
+ Volume Serial Number is 8C7A-C024
+
+ Directory of D:\HITK_CTF\CTF-Dakshh\Web App - CTF - JK\web-treasure-hunt-ctf
+
+07-03-2026  10:19    <DIR>          .
+05-03-2026  23:53    <DIR>          ..
+07-03-2026  10:37             4,543 app.py
+02-03-2026  11:12                21 flag
+02-03-2026  11:12                26 flag.txt
+07-03-2026  10:43                26 flagpath
+07-03-2026  10:43                26 flagpath.txt
+02-03-2026  11:12                22 Procfile
+07-03-2026  10:37             5,255 readme.md
+02-03-2026  11:12                15 requirements.txt
+07-03-2026  10:50                 0 res.txt
+07-03-2026  10:38             2,211 solve.py
+07-03-2026  10:20    <DIR>          templates
+              10 File(s)         12,145 bytes
+               3 Dir(s)  281,497,579,520 bytes free

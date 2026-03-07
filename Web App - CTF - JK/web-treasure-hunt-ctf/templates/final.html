@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="center">
+    <h2 style="color: var(--success); text-shadow: 0 0 10px rgba(0,255,102,0.5);">[ ACCESS GRANTED ]</h2>
+    <p>Congratulations! You have breached the final perimeter.</p>
+    <br>
+    <p>Enter system command to extract data:</p>
+    <br>
+    <form action="/redirect" method="post">
+        <input type="text" name="cmd" placeholder="user@sys:~$" required autocomplete="off"
+            style="max-width: 400px; width: 80%;">
+        <br>
+        <button type="submit">EXECUTE</button>
+    </form>
+
+    {% if output %}
+    <div
+        style="margin-top: 30px; text-align: left; background: rgba(0,0,0,0.5); padding: 15px; border: 1px dashed var(--neon-dim); font-family: monospace;">
+        <p style="color: var(--text-muted);">>> output</p>
+        <pre style="color: var(--neon); white-space: pre-wrap; font-size: 1rem;">{{ output }}</pre>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block comments %}
+<!-- DAKSHH{c0mm4nd_1nj3ct10n_r3s_0k} -->
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="center" style="margin-top: 40px;">
+    <!-- Colorful animated text for winner -->
+    <h2 style="color: var(--neon); text-shadow: 0 0 15px var(--neon);">
+        [ CONGRATULATIONS {{ name }}! SEQUENCE COMPLETE ]
+    </h2>
+    <br><br>
+
+    <div
+        style="background: rgba(0, 255, 102, 0.1); border: 1px solid var(--success); padding: 30px; margin-bottom: 30px; border-radius: 5px;">
+        <h3 style="color: var(--success); margin: 0; text-shadow: 0 0 8px rgba(0, 255, 102, 0.5);">FINAL FLAG FOUND:
+        </h3>
+        <br>
+        <span style="font-family: 'Share Tech Mono', monospace; font-size: 1.5rem; color: #fff; letter-spacing: 2px;">
+            DAKSHH{h1nglish_hunt_3asy}
+        </span>
+    </div>
+
+    <p style="color: var(--text-muted);">
+        <b>ATTENTION:</b> Keep this flag secured. It operates as the master passphrase for advancing to the Medium Level
+        Cyber Trail CTF.
+    </p>
+    <br><br>
+    <marquee style="color: var(--success); text-shadow: 0 0 5px var(--success);">
+        # MISSION_ACCOMPLISHED # SYSTEM_OVERRIDE_SUCCESSFUL #
+    </marquee>
+</div>
+{% endblock %}
