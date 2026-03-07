@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /shift-key-is-3
+Disallow: /vault
