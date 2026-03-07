@@ -1,7 +1,7 @@
 import sqlite3
 import unicodedata
 import os
-from flask import Flask, request, render_template_string, flash
+from flask import Flask, request, render_template, flash
 
 app = Flask(__name__)
 app.secret_key = 'hard_sqli_secret_2026'
@@ -31,42 +31,10 @@ def waf(payload):
             return True, word
     return False, ""
 
-# --- HTML Template ---
-HTML_PAGE = '''
-<!DOCTYPE html>
-<html>
-<head><title>System Configuration Lookup</title></head>
-<body style="font-family: Arial; margin: 40px; background-color: #1a1a1a; color: #00ff00;">
-    <h2>Restricted Vault Config Lookup</h2>
-    <p>Enter a configuration key to check its value.</p>
-    
-    <form method="POST">
-        <input type="text" name="key" placeholder="sys_status" style="padding: 5px;">
-        <button type="submit" style="padding: 5px;">Search</button>
-    </form>
-    
-    <br>
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <ul style="color: red;">
-        {% for message in messages %}
-          <li>{{ message }}</li>
-        {% endfor %}
-        </ul>
-      {% endif %}
-    {% endwith %}
-
-    {% if result %}
-        <p><strong>Config Value:</strong> {{ result[0] }}</p>
-    {% endif %}
-</body>
-</html>
-'''
-
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "GET":
-        return render_template_string(HTML_PAGE)
+        return render_template('index.html')
         
     user_key = request.form.get("key", "")
     
@@ -74,7 +42,7 @@ def index():
     blocked, word = waf(user_key)
     if blocked:
         flash(f"[SECURITY] Intrusion Attempt Blocked! Illegal sequence/character '{word}' detected.")
-        return render_template_string(HTML_PAGE)
+        return render_template('index.html')
         
     # 2. VULNERABILITY: Unicode Normalization AFTER the WAF Check
     # A fullwidth apostrophe '＇' (U+FF07) gets past the WAF, but normalize turns it into a standard ASCII `'` (U+0027).
@@ -98,7 +66,7 @@ def index():
     if not result:
         flash("Configuration key not found.")
         
-    return render_template_string(HTML_PAGE, result=result)
+    return render_template('index.html', result=result)
 
 if __name__ == "__main__":
     init_db()
