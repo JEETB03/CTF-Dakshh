@@ -1,54 +1,96 @@
-# Web Treasure Hunt CTF - Medium (200 Points)
+# 🕶️ Phase II: CSS Phantom Protocol (Medium Web Hunt)
 
-**Difficulty:** Medium - "Anti-AI / CSS Ghost"
-**Objective:** Navigate the second stage of the treasure hunt. Requires the flag from the Easy challenge to begin.
+**Category:** Web Application Security  
+**Difficulty:** Medium (200 Points)  
 **Flag Format:** `DAKSHH{flag}`
 
-## Admin Guide
-This is Part 2 of the Web Treasure Hunt Trilogy.
-
-### The "Anti-AI" Mechanism:
-Automated tools (like `curl`, `wget`, or standard LLM DOM scrapers) typically read the raw HTML text to find flags or hints. 
-In this challenge, **there is zero hint text in the HTML DOM**. All hints are injected into the browser visually using CSS pseudo-elements (e.g., `.puzzle1::before { content: "Aankhein khuli par dikhta kuch nahi..."; }`).
-A human opening the page in a browser will see the text perfectly normal. An AI scraping the HTML will see empty `<div>` tags and assume the page is blank, except for a fake flag explicitly planted in the HTML to trick bots.
-
-### Deployment & Setup:
-1. **Dependencies:** Ensure Flask is installed.
-   ```bash
-   pip install flask
-   ```
-2. **Start Server:**
-   ```bash
-   python app.py
-   ```
-   The server runs on `http://0.0.0.0:5005`.
-3. **Verification:**
-   Run the solver script to verify the application logic. The solver requires the hardcoded `EASY_FLAG` to authenticate.
-   ```bash
-   python solve.py
-   ```
+> *"You shattered the perimeter in Phase I. Now you face the Abyss Protocol. The Gatekeeper demands the master key you acquired previously. The shadows here hide their secrets not in the code itself, but in the rendering of the simulation. Can you see what the machines cannot?"*
 
 ---
 
-## Player Guide
+## Challenge Overview
+This is the second installment of the "Web Treasure Hunt Trilogy." Here, the core concept revolves around defeating automated scanning tools and AI web scrapers.
 
-Welcome to the Shadow Realm. You will need the key you proved worthy of in the first trial to even step foot in here.
-
-### Hints:
-- **Hint 1:** Are you using a terminal or an automated tool to read this page? You might want to use a real browser. The shadows hide from machines.
-- **Hint 2:** "Aankhein khuli par dikhta kuch nahi..." - If you see a fake flag in the source code, you've fallen for the bot trap. Read the glowing green text on your screen.
-
-### Walkthrough / Solution
-1. Visit the homepage `/`. You are prompted for a Key.
-2. Enter the flag from the Easy challenge: `DAKSHH{h1nglish_hunt_3asy}`.
-3. You are redirected to `/stage1`.
-4. If you view the source code, you'll see empty divs and a fake flag `DAKSHH{th1s_is_4_f4k3...}`. Ignore the source code.
-5. Read the rendered page in the browser. The CSS reveals the hint: "Search for the 'hidden_shadow' in the URL."
-6. Navigate to `/hidden_shadow`.
-7. The CSS on this page reveals the vault password: `k3y_m4st3r_2026`.
-8. Submit the password.
-9. You are redirected to `/vault` where the CSS reveals the Medium Flag: `DAKSHH{css_gh0st_m3d1um}`.
-10. **Save this flag! You will need it to combine with the Hard challenge fragment to win the series.**
+### Anti-AI / Trap Mechanisms
+- **CSS Ghost Rendering:** Most scripts and LLM DOM parsers look for raw text hidden in `<p>` tags, `<!-- comments -->`, or JavaScript objects. In this room, **THERE ARE NO HINTS IN THE HTML**. The hints and passwords are dynamically injected into the browser's view using CSS pseudo-elements (`::before` / `::after` content).
+- **Decoy Flags:** The actual HTML source is heavily trapped with realistic-looking decoy flags (e.g., `DAKSHH{5h4d0w_r34lm_4cc3ss_t0k3n_v1}`). "Lazy" players running automated regex scans will submit these flags and fail. Only a human reading the visuals rendered by the browser (or a human inspecting the CSS explicitly) can progress.
 
 ---
-Contributor : Jyotirmoy Karmakar(0xjyotirmoy)
+
+## 🔧 How to Start the Challenge Room (Step-by-Step)
+
+### Prerequisites
+- **Python 3.x** installed
+
+### Step 1: Install Python Dependencies
+Open a terminal in the challenge directory and run:
+```bash
+pip install flask requests
+```
+
+### Step 2: Start the Web Server
+Launch the Flask application for Phase II:
+```bash
+python app.py
+```
+> **Note:** The server runs on **http://127.0.0.1:5005** (Port 5005).
+
+### Step 3: Access the Challenge Room
+Players open their browser and go to:
+```
+http://127.0.0.1:5005
+```
+
+### Step 4: Stop the Room (When Done)
+Press `Ctrl + C` in the terminal where the server is running.
+
+---
+
+## 🔑 Writeup — How to Solve (Player Walkthrough)
+
+### Phase 1: The Gatekeeper
+1. Navigate to the application at `http://127.0.0.1:5005`.
+2. You are immediately blocked by an authorization form demanding a sequence key. The hint text warns: *"Entry requires the master key acquired from the Easy Web Treasure Hunt..."*
+3. You must paste the final flag obtained from the previous room.
+4. Paste exactly: `DAKSHH{h1nglish_hunt_3asy}` and click **AUTHORIZE**.
+5. You successfully bypass the Gatekeeper and enter `/stage1`.
+
+### Phase 2: The Blind Spot (Defeating the Decoy)
+1. You land on `Stage_01`. The visible text on the page says:
+   *"Aankhein khuli par dikhta kuch nahi. (Eyes open but nothing is seen) - Search for the 'hidden_shadow' in the URL."*
+2. **The Trap:** If you right-click the page and select "View Source", you will notice the text you just read is *nowhere* to be found in the raw HTML!
+3. Instead, the HTML source contains a decoy flag: `DAKSHH{st4g3_1_1n1t14l1z4t10n_k3y}`. Submitting this flag will result in failure.
+4. **The "Aha!" Moment:** Look closely at the `<style>` block in the `<head>` of the HTML source. The actual hint text is being injected directly into the browser view using CSS:
+   ```css
+   .puzzle1::after { content: "Search for the 'hidden_shadow' in the URL."; }
+   ```
+5. Heeding the visual hint, attach `/hidden_shadow` to the root URL and press Enter.
+
+### Phase 3: The Shadow Realm
+1. You load `/hidden_shadow`. 
+2. The glowing purple text on the screen reads: *"You found the shadow. The password for the lower vault is: k3y_m4st3r_2026"*.
+3. Once again, checking the source code only reveals another fake trap (`DAKSHH{5h4d0w_r34lm_4cc3ss_t0k3n_v1}`). The real password was rendered via CSS.
+4. Type `k3y_m4st3r_2026` into the decryption prompt and click **DECRYPT**.
+
+### Phase 4: Vault Access
+1. You are redirected to `/vault`.
+2. The CSS Phantom strikes one last time. In large glowing cyan letters, the browser renders the final flag.
+3. However, if you inspect the raw HTML source, all you find is `<div class="decoy-flag">DAKSHH{v4ult_4cc3ss_d3n13d_f4k3_b0t}</div>`.
+4. The true flag must be copied directly from the visual page output (or manually extracted from the CSS `<style>` block):
+
+🏆 `DAKSHH{css_gh0st_m3d1um}`
+
+*Save this flag. It is the final cipher required to breach the upcoming Hard challenge!*
+
+---
+
+## 🛡️ Admin Verification (Automated Test)
+
+You can run the provided solver script to automatically verify the entire logic flow works:
+```bash
+python solve.py
+```
+*(Note: Because the solver is a script, it manually looks for the flags in the HTML source text. This proves exactly why the CSS trick works perfectly against standard bots!)*
+
+---
+Contributor: Jyotirmoy Karmakar (0xjyotirmoy)

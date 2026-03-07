@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block extra_content %}
+<style>
+    .flag-box::after {
+        content: "MEDIUM FLAG: {{ flag }}";
+        font-size: 1.6em;
+        letter-spacing: 2px;
+    }
+
+    .instructions::before {
+        content: "Save this flag. It is the final cipher required to breach the Hard challenge.";
+        margin-top: 30px;
+        font-size: 0.9em;
+        color: var(--text-muted);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<h1 style="color: #00FFCC; text-shadow: 0 0 15px rgba(0, 255, 204, 0.5);">[ VAULT UNLOCKED ]</h1>
+<div class="flag-box puzzle-box" style="margin: 40px 0;"></div>
+<div class="instructions puzzle-box"></div>
+{% endblock %}
+
+{% block decoys %}
+<div class="decoy-flag">DAKSHH{v4ult_4cc3ss_d3n13d_f4k3_b0t}</div>
+{% endblock %}

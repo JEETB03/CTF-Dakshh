@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abyss Protocol | Medium Trail</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Orbitron:wght@500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #05050A;
+            --panel-bg: #10101C;
+            --neon-purple: #9D00FF;
+            --neon-magenta: #FF007F;
+            --text-muted: #8892B0;
+            --text-bright: #E6E6FA;
+            --glow-purple: rgba(157, 0, 255, 0.4);
+            --glow-magenta: rgba(255, 0, 127, 0.4);
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-bright);
+            font-family: 'Fira Code', monospace;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-image: linear-gradient(135deg, #05050A 0%, #0A0A1F 100%);
+        }
+
+        .cyber-panel {
+            background: var(--panel-bg);
+            border: 1px solid rgba(157, 0, 255, 0.2);
+            border-top: 3px solid var(--neon-purple);
+            padding: 50px 40px;
+            width: 700px;
+            max-width: 90vw;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+            border-radius: 4px;
+            text-align: center;
+            transition: 0.4s ease-in-out;
+            position: relative;
+        }
+
+        .cyber-panel:hover {
+            box-shadow: 0 0 25px var(--glow-purple);
+            border-color: rgba(157, 0, 255, 0.5);
+        }
+
+        h1,
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-magenta);
+            text-shadow: 0 0 10px var(--glow-magenta);
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--text-muted);
+            color: var(--neon-purple);
+            padding: 12px 15px;
+            font-family: 'Fira Code', monospace;
+            width: 80%;
+            max-width: 300px;
+            border-radius: 2px;
+            margin: 15px 0;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: var(--neon-purple);
+            box-shadow: 0 0 12px var(--glow-purple);
+            color: #fff;
+        }
+
+        button {
+            background: transparent;
+            border: 1px solid var(--neon-magenta);
+            color: var(--neon-magenta);
+            padding: 10px 25px;
+            font-family: 'Orbitron', sans-serif;
+            cursor: pointer;
+            border-radius: 2px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+            font-size: 1.1rem;
+        }
+
+        button:hover {
+            background: var(--neon-magenta);
+            color: var(--bg-deep);
+            box-shadow: 0 0 15px var(--glow-magenta);
+        }
+
+        .ghost-text {
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        /* Essential for challenge mechanics: */
+        .puzzle-box {
+            margin: 20px 0;
+        }
+
+        .puzzle-box::before {
+            content: "";
+            color: var(--text-bright);
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .puzzle-box::after {
+            content: "";
+            color: var(--neon-purple);
+            display: block;
+            text-shadow: 0 0 5px var(--glow-purple);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* The bot traps */
+        .decoy-flag {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cyber-panel">
+        {% block content %}{% endblock %}
+    </div>
+    {% block decoys %}{% endblock %}
+    {% block extra_content %}{% endblock %}
+</body>
+
+</html>

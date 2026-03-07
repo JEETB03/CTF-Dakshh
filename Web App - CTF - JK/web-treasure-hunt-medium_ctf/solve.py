@@ -10,11 +10,11 @@ print("Did it redirect to stage1?", "stage1" in r1.url or "stage1" in r1.text)
 
 print("\n2. Visiting Stage 1...")
 r2 = session.get(f"{BASE_URL}/stage1")
-print("Does stage1 have anti-bot fake flag?", "DAKSHH{th1s" in r2.text)
+print("Does stage1 have realistic decoy flag?", "DAKSHH{st4g3" in r2.text)
 
 print("\n3. Following CSS ghost hint to /hidden_shadow...")
 r3 = session.get(f"{BASE_URL}/hidden_shadow")
-print("Is Stage 2 loaded?", "Shadow Realm" in r3.text)
+print("Is Stage 2 loaded?", "SHADOW REALM" in r3.text)
 
 print("\n4. Submitting password to vault...")
 r4 = session.post(f"{BASE_URL}/vault", data={"passkey": "k3y_m4st3r_2026"})

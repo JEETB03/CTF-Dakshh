@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block extra_content %}
+<style>
+    .puzzle2::before {
+        content: "You found the shadow. The password for the lower vault is: ";
+    }
+
+    .puzzle2::after {
+        content: "k3y_m4st3r_2026";
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<h2>[ THE SHADOW REALM ]</h2>
+<div class="puzzle2 puzzle-box"></div>
+<br>
+<form method="POST" action="/vault">
+    <input type="password" name="passkey" placeholder="Enter Vault Password..." required>
+    <br>
+    <button type="submit">DECRYPT</button>
+</form>
+{% endblock %}
+
+{% block decoys %}
+<!-- Shadow Process Token: -->
+<!-- DAKSHH{5h4d0w_r34lm_4cc3ss_t0k3n_v1} -->
+{% endblock %}

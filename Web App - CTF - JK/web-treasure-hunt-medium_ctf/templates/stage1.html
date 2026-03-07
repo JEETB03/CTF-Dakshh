@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block extra_content %}
+<style>
+    /* Anti-AI CSS Text Injection */
+    .puzzle1::before {
+        content: "Aankhein khuli par dikhta kuch nahi. (Eyes open but nothing is seen) - ";
+    }
+
+    .puzzle1::after {
+        content: "Search for the 'hidden_shadow' in the URL.";
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<h2>[ STAGE_01: BLIND SPOT ]</h2>
+<div class="puzzle1 puzzle-box"></div>
+{% endblock %}
+
+{% block decoys %}
+<!-- System Artifact: -->
+<div class="decoy-flag">DAKSHH{st4g3_1_1n1t14l1z4t10n_k3y}</div>
+{% endblock %}

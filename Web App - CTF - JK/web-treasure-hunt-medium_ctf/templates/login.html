@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block extra_content %}
+<style>
+    .hint-container::after {
+        content: "WARNING: Entry requires the master key acquired from the Easy Web Treasure Hunt...";
+        display: block;
+        margin-bottom: 25px;
+        font-size: 1.1em;
+        color: var(--text-muted);
+        text-shadow: none;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<h1>[ THE GATEKEEPER ]</h1>
+<div class="hint-container puzzle-box"></div>
+<form method="POST" action="/login">
+    <input type="text" name="password" placeholder="Initialize Sequence Key..." required autocomplete="off">
+    <br>
+    <button type="submit">AUTHORIZE</button>
+</form>
+{% endblock %}

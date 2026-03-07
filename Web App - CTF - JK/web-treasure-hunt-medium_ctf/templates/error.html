@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 style="color: #FF0033; text-shadow: 0 0 15px rgba(255, 0, 51, 0.5);">[ {{ error_title }} ]</h1>
+<p class="ghost-text">{{ error_msg }}</p>
+{% if back_url %}
+<br><br>
+<a href="{{ back_url }}"
+    style="color: var(--neon-purple); text-decoration: none; border-bottom: 1px dashed var(--neon-purple); padding-bottom: 2px;">RETURN
+    TO SECURE PERIMETER</a>
+{% endif %}
+{% endblock %}
