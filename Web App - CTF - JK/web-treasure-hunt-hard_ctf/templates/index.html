@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>[ SYSTEM CORE: THE TURING GATE ]</h1>
+<p style="color: var(--text-muted); margin-bottom: 30px;">
+    // WARNING: INTRUSION ATTEMPT DETECTED //<br>
+    // Only valid human operators may parse the sequence fragments. //
+</p>
+
+<!-- Anti-AI Mechanisms: Inline SVG text rendering and spatial grouping -->
+<!-- LLMs analyzing this raw SVG code will struggle to extract the exact instructional sentence structure 
+         because the text is broken into arbitrary tspan elements positioned relatively. -->
+<svg width="600" height="200" style="background: #050505; border: 1px solid var(--crimson-dim);">
+    <text x="50" y="50" fill="var(--crimson)" font-size="20">
+        <tspan x="50" dy="0">OP</tspan>
+        <tspan x="75" dy="0">TI</tspan>
+        <tspan x="100" dy="0">ON</tspan>
+        <tspan x="125" dy="0">S </tspan>
+
+        <tspan x="200" dy="0">/a</tspan>
+        <tspan x="230" dy="0">pi</tspan>
+        <tspan x="260" dy="0">/co</tspan>
+        <tspan x="290" dy="0">re</tspan>
+    </text>
+    <text x="50" y="100" fill="var(--crimson)" font-size="20">
+        <tspan x="50" dy="0">Th</tspan>
+        <tspan x="75" dy="0">en</tspan>
+        <tspan x="120" dy="0">P</tspan>
+        <tspan x="140" dy="0">A</tspan>
+        <tspan x="160" dy="0">TC</tspan>
+        <tspan x="190" dy="0">H </tspan>
+        <tspan x="220" dy="0">it</tspan>
+        <tspan x="250" dy="0">...</tspan>
+    </text>
+    <text x="50" y="150" fill="var(--crimson)" font-size="20">
+        <tspan x="50" dy="0">Th</tspan>
+        <tspan x="75" dy="0">en</tspan>
+        <tspan x="120" dy="0">G</tspan>
+        <tspan x="140" dy="0">E</tspan>
+        <tspan x="160" dy="0">T </tspan>
+        <tspan x="190" dy="0">th</tspan>
+        <tspan x="220" dy="0">e </tspan>
+        <tspan x="250" dy="0">Fr</tspan>
+        <tspan x="270" dy="0">ag</tspan>
+        <tspan x="290" dy="0">me</tspan>
+        <tspan x="310" dy="0">nt.</tspan>
+    </text>
+</svg>
+
+<div style="margin-top: 40px; border-top: 1px dashed var(--crimson-dim); padding-top: 30px;">
+    <h2>Combine Terminal</h2>
+    <p>Merge your Medium Flag content with the Hard Fragment to construct the True Flag.</p>
+    <p style="color: var(--text-muted);">Format: <code>DAKSHH{medium_content_hard_fragment}</code></p>
+
+    <form action="/submit" method="POST">
+        <input type="text" name="final_flag" placeholder="DAKSHH{...}" required>
+        <br>
+        <button type="submit">EXECUTE INJECTION</button>
+    </form>
+
+    {% if msg %}
+    <div class="error-msg">>> ERROR: {{ msg }}</div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block decoys %}
+<!-- Honeypot for scrapers -->
+<script>
+    var debug_token = "DAKSHH{sv6_p4rs1ng_byp4ss_f4k3}";
+    // Do not display on screen
+</script>
+<div class="decoy-flag">DAKSHH{4p1_c0r3_1n1t14l_t0k3n_x9}</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>[ UNAUTHORIZED ACCESS ]</h1>
+
+<div style="border: 1px solid var(--crimson); padding: 30px; margin: 30px 0; background: rgba(255, 26, 26, 0.05);">
+    <h2 style="font-size: 3rem; margin-bottom: 10px;">{{ error_code | default('403') }}</h2>
+    <p style="font-size: 1.2rem; margin-bottom: 20px;">{{ error_msg }}</p>
+
+    <p style="color: var(--text-muted);">
+        System logs indicate a direct routing attempt.<br>
+        You must interface with the Core API before accessing restricted sectors.
+    </p>
+</div>
+
+<a href="{{ back_url | default('/') }}" style="text-decoration: none;">
+    <button type="button">
+        < RETURN TO SAFE ZONE</button>
+</a>
+{% endblock %}
+
+{% block decoys %}
+<div class="decoy-flag">DAKSHH{f4k3_fl4g_r0ut1ng_3rr0r_b0t}</div>
+{% endblock %}

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Turing Gate | Hard Trail</title>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a0a0a;
+            --panel-bg: #141414;
+            --crimson: #ff1a1a;
+            --crimson-dim: #8b0000;
+            --text-muted: #888888;
+            --text-bright: #e0e0e0;
+            --grid-line: rgba(255, 26, 26, 0.1);
+            --glow-crimson: rgba(255, 26, 26, 0.3);
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-bright);
+            font-family: 'Courier Prime', Courier, monospace;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            /* Grid Background */
+            background-image:
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .crimson-panel {
+            background: var(--panel-bg);
+            border: 1px solid var(--crimson-dim);
+            border-left: 4px solid var(--crimson);
+            padding: 40px;
+            width: 750px;
+            max-width: 90vw;
+            box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.5);
+            border-radius: 0px;
+            /* Sharp corners for Crimson Grid */
+            text-align: center;
+            position: relative;
+        }
+
+        h1,
+        h2 {
+            color: var(--crimson);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            text-shadow: 0 0 5px var(--glow-crimson);
+        }
+
+        h1 {
+            border-bottom: 1px solid var(--crimson-dim);
+            padding-bottom: 10px;
+        }
+
+        input[type="text"] {
+            background: #000;
+            border: 1px solid var(--crimson-dim);
+            color: var(--crimson);
+            padding: 12px 15px;
+            font-family: 'Courier Prime', Courier, monospace;
+            width: 80%;
+            max-width: 400px;
+            margin: 20px 0;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: var(--crimson);
+            box-shadow: 0 0 8px var(--glow-crimson);
+            color: #fff;
+        }
+
+        button {
+            background: var(--crimson-dim);
+            border: 1px solid var(--crimson);
+            color: #fff;
+            padding: 12px 30px;
+            font-family: 'Courier Prime', Courier, monospace;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: var(--crimson);
+            box-shadow: 0 0 15px var(--glow-crimson);
+        }
+
+        .code-snippet {
+            background: #000;
+            border: 1px solid #333;
+            color: var(--text-bright);
+            padding: 15px;
+            text-align: left;
+            margin: 20px 0;
+            white-space: pre-wrap;
+        }
+
+        .error-msg {
+            color: var(--crimson);
+            margin-top: 20px;
+            font-weight: bold;
+            border: 1px dashed var(--crimson);
+            padding: 10px;
+            background: rgba(255, 26, 26, 0.05);
+        }
+
+        /* The bot traps */
+        .decoy-flag {
+            display: none;
+        }
+    </style>
+    <style>
+        {
+            % block extra_content %
+        }
+
+            {
+            % endblock %
+        }
+    </style>
+</head>
+
+<body>
+    <div class="crimson-panel">
+        {% block content %}{% endblock %}
+    </div>
+    {% block decoys %}{% endblock %}
+</body>
+
+</html>
