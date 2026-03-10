@@ -159,7 +159,7 @@ These unique challenges have an alternative flag format: `flag{example_flag_here
 
 ---
 
-**Contributor:** JEET BISWAS (JEETB03)
+**Contributor:** HARSH RAJ (Harshraj9142)
 
 ## 🔎 OSINT Challenge Series
 
@@ -175,7 +175,7 @@ All flags follow the format: `dakshh{example_flag_here}`
 
 ---
 
-**Contributor:** JEET BISWAS (JEETB03)
+**Contributor:** HARSH RAJ (Harshraj9142)
 
 ## 🧩 Mixed Challenge Series
 
