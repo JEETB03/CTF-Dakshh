@@ -2,9 +2,12 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DAKSHH CTF</title>
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; font-src 'self' https://fonts.gstatic.com; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' http://localhost:3005;">
+    <title>Cyber-Quest</title>
     <link rel="stylesheet" href="./style.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;700&display=swap"
@@ -12,19 +15,34 @@
 </head>
 
 <body>
+    <!-- Anti-Tamper Script -->
+    <script>
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.onkeydown = function (e) {
+            if (e.keyCode == 123) { // F12
+                return false;
+            }
+            if (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0) || e.keyCode == 'C'.charCodeAt(0))) {
+                return false;
+            }
+            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+                return false;
+            }
+        };
+    </script>
     <div id="app">
         <header>
             <div class="glitch-wrapper">
-                <h1 class="glitch" data-text="DAKSHH CTF">DAKSHH CTF</h1>
+                <h1 class="glitch" data-text="Cyber-Quest">Cyber-Quest</h1>
             </div>
             <p class="subtitle">Complete All Challenges to Win</p>
         </header>
 
         <main>
             <div id="login-section" class="intro" style="text-align: center;">
-                <h2>Identify Yourself</h2>
-                <p>Enter a username to track your progress and submit flags.</p>
-                <input type="text" id="username-input" placeholder="Hacker Alias"
+                <h2>Identify Your Team</h2>
+                <p>Enter a team name to track your progress and submit flags.</p>
+                <input type="text" id="username-input" placeholder="Team Name"
                     style="padding: 10px; width: 60%; background: #222; color: #00ff41; border: 1px solid #00ff41; border-radius: 4px; font-family: 'Fira Code', monospace; margin-bottom: 10px;">
                 <br>
                 <button id="login-btn" class="access-btn" style="width: auto; padding: 10px 30px;">Initialize
@@ -36,9 +54,10 @@
                     style="display: flex; justify-content: space-between; align-items: flex-start; gap: 30px; margin-bottom: 40px; flex-wrap: wrap;">
                     <div class="intro" style="flex: 2; margin-bottom: 0;">
                         <h3>Welcome, <span id="current-user" style="color: var(--primary-color);"></span></h3>
-                        <p>Welcome to DAKSHH CTF. Choose your category, download the files, investigate, and submit your
+                        <p>Welcome to Cyber-Quest. Choose your category, download the files, investigate, and submit
+                            your
                             flags.</p>
-                        <p class="flag-format">Flag Formats can be: <code>DAKSHH{...}</code> or <code>flag{...}</code>
+                        <p class="flag-format">Flag Formats can be: <code>DAKSHH{...}</code> or <code>dakshh{...}</code>
                             depending on the challenge instructions.</p>
                     </div>
 
@@ -46,7 +65,7 @@
                         style="flex: 1; min-width: 300px; background: var(--bg-secondary); border: 1px solid #333; padding: 20px; border-radius: 8px;">
                         <h3
                             style="color: var(--primary-color); font-family: 'Fira Code', monospace; border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 15px;">
-                            TOP HACKERS</h3>
+                            TOP TEAMS</h3>
                         <ul id="leaderboard-list" style="list-style-type: none; padding: 0;">
                             <li>Loading...</li>
                         </ul>
@@ -54,6 +73,37 @@
                             <a href="./leaderboard.html"
                                 style="color: #00d2ff; text-decoration: none; font-size: 0.9em;">[ View Full Leaderboard
                                 ]</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Intro Section -->
+                <div class="intro" style="margin-top: 40px; text-align: center;">
+                    <h2 style="color: #fff; font-family: 'Fira Code', monospace; letter-spacing: 2px;">INTRODUCTION</h2>
+                    <p>Before we begin the main mission, let's make sure your reconnaissance skills are sharp.</p>
+                </div>
+                <div class="challenges-grid">
+                    <div class="challenge-card" style="border-top: 4px solid #fff;">
+                        <div class="card-header">
+                            <span class="difficulty easy">Easy</span>
+                            <span class="points">50 pts</span>
+                        </div>
+                        <h2>A Strange Signal</h2>
+                        <p class="category">Intro – Recon</p>
+                        <p class="desc">Crewmates, something feels... off. ඞ<br><br>While navigating through the DAKSHH
+                            systems, one of the crew reported a strange signal hidden somewhere on the DAKSHH landing
+                            page. It’s subtle, almost like someone tried to hide it in plain sight.<br><br>The Impostor
+                            might have left behind a trace — a secret message only a vigilant crewmate can uncover. Your
+                            mission is simple: inspect the landing page carefully and find the hidden flag before the
+                            Impostor wipes the evidence.<br><br>Not everything you see on the surface tells the whole
+                            story. Sometimes the truth hides behind the panels of the ship... ඞ<br><br><strong>Vague
+                                Hints:</strong><br>- Crewmates who investigate the ship’s structure often find things
+                            others miss.<br>- Sometimes the Impostor hides messages where players rarely look.<br>- The
+                            answer may already be within the page itself.</p>
+                        <div class="submission-area">
+                            <input type="text" id="flag-26" placeholder="DAKSHH{...}" class="flag-input">
+                            <button class="submit-btn" onclick="submitFlag(26)">Submit</button>
+                            <div id="status-26" class="status-msg"></div>
                         </div>
                     </div>
                 </div>
@@ -240,6 +290,38 @@
                             <div id="status-20" class="status-msg"></div>
                         </div>
                     </div>
+
+                    <!-- Mixed Web challenges -->
+                    <div class="challenge-card">
+                        <div class="card-header">
+                            <span class="difficulty ez-med">Easy-Medium</span>
+                            <span class="points">200 pts</span>
+                        </div>
+                        <h2>Time Travel Room</h2>
+                        <p class="category">Web Exploitation – Mixed / Time Travel</p>
+                        <p class="desc">Fake a 365-day login streak using localStorage, then decrypt the Caesar Cipher.
+                        </p>
+                        <div class="submission-area">
+                            <input type="text" id="flag-24" placeholder="dakshh{...}" class="flag-input">
+                            <button class="submit-btn" onclick="submitFlag(24)">Submit</button>
+                            <div id="status-24" class="status-msg"></div>
+                        </div>
+                    </div>
+                    <div class="challenge-card">
+                        <div class="card-header">
+                            <span class="difficulty easy">Easy</span>
+                            <span class="points">100 pts</span>
+                        </div>
+                        <h2>Guest Cookie Paradox</h2>
+                        <p class="category">Web Exploitation – Mixed / Cookie Forgery</p>
+                        <p class="desc">Base64 cookie forgery for privilege escalation, followed by a Caesar Cipher
+                            decryption.</p>
+                        <div class="submission-area">
+                            <input type="text" id="flag-25" placeholder="dakshh{...}" class="flag-input">
+                            <button class="submit-btn" onclick="submitFlag(25)">Submit</button>
+                            <div id="status-25" class="status-msg"></div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Crypto Section -->
@@ -362,6 +444,44 @@
                     </div>
                 </div>
 
+                <!-- OSINT Section -->
+                <div class="intro" style="margin-top: 60px; text-align: center;">
+                    <h2 style="color: #bc13fe; font-family: 'Fira Code', monospace; letter-spacing: 2px;">OSINT
+                        INVESTIGATIONS</h2>
+                    <p>Track down digital footprints and solve real-world mysteries.</p>
+                </div>
+                <div class="challenges-grid">
+                    <div class="challenge-card" style="border-top: 4px solid #bc13fe;">
+                        <div class="card-header">
+                            <span class="difficulty easy" style="color: #bc13fe; border-color: #bc13fe;">Easy</span>
+                            <span class="points">100 pts</span>
+                        </div>
+                        <h2>Bike Shop Mystery</h2>
+                        <p class="category">OSINT – Phone Numbers</p>
+                        <p class="desc">Track down the phone number associated with a mysterious bike shop.</p>
+                        <div class="submission-area">
+                            <input type="text" id="flag-22" placeholder="dakshh{...}" class="flag-input">
+                            <button class="submit-btn" onclick="submitFlag(22)">Submit</button>
+                            <div id="status-22" class="status-msg"></div>
+                        </div>
+                    </div>
+                    <div class="challenge-card" style="border-top: 4px solid #bc13fe;">
+                        <div class="card-header">
+                            <span class="difficulty medium" style="color: #bc13fe; border-color: #bc13fe;">Medium</span>
+                            <span class="points">300 pts</span>
+                        </div>
+                        <h2>Holiday Bus Investigation</h2>
+                        <p class="category">OSINT – Transportation</p>
+                        <p class="desc">Analyze the provided details to uncover the mysterious holiday bus serial
+                            tracking code.</p>
+                        <div class="submission-area">
+                            <input type="text" id="flag-23" placeholder="dakshh{...}" class="flag-input">
+                            <button class="submit-btn" onclick="submitFlag(23)">Submit</button>
+                            <div id="status-23" class="status-msg"></div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Reverse Engineering Section -->
                 <div class="intro" style="margin-top: 60px; text-align: center;">
                     <h2 style="color: #ff0055; font-family: 'Fira Code', monospace; letter-spacing: 2px;">REVERSE
@@ -401,12 +521,27 @@
                             <div id="status-12" class="status-msg"></div>
                         </div>
                     </div>
+                    <div class="challenge-card" style="border-top: 4px solid #ff0055;">
+                        <div class="card-header">
+                            <span class="difficulty hard"
+                                style="background: #3a0013; color: #ff0055; border: 1px solid #ff0055;">Hard</span>
+                            <span class="points">800 pts</span>
+                        </div>
+                        <h2>Operation Silent Bus</h2>
+                        <p class="category">Rev Engg – Automotive Systems</p>
+                        <p class="desc">A CAN bus firmware session was intercepted. Restore the firmware bin and find the hidden flag.</p>
+                        <div class="submission-area">
+                            <input type="text" id="flag-27" placeholder="DAKSHH{...}" class="flag-input">
+                            <button class="submit-btn" onclick="submitFlag(27)">Submit</button>
+                            <div id="status-27" class="status-msg"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
 
         <footer>
-            <p>Developed for DAKSHH CTF.</p>
+            <p>Developed for Cyber-Quest.</p>
         </footer>
     </div>
     <script type="module" src="./main.js"></script>

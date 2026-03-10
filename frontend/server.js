@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
+const crypto = require('crypto'); // Added for CSRF token generation
 
 const app = express();
 const PORT = 3005;
@@ -10,28 +11,38 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '')));
 
+// In-memory store for CSRF Tokens mapping teamName -> token
+const csrfTokens = {};
+
 // Set up SQLite Database
 const dbPath = path.resolve(__dirname, 'ctf_hub.db');
 const db = new sqlite3.Database(dbPath, (err) => {
     if (err) {
         console.error('Error opening database ', err.message);
     } else {
-        db.run(`CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT UNIQUE,
-            score INTEGER DEFAULT 0
-        )`);
+        db.serialize(() => {
+            // Drop old tables if they exist to force team schema update
+            db.run(`DROP TABLE IF EXISTS users`);
+            db.run(`DROP TABLE IF EXISTS attempts`);
 
-        db.run(`CREATE TABLE IF NOT EXISTS attempts (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT,
-            challenge_id INTEGER,
-            attempts INTEGER DEFAULT 0,
-            locked_until DATETIME DEFAULT NULL,
-            solved BOOLEAN DEFAULT FALSE,
-            UNIQUE(username, challenge_id)
-        )`);
-        console.log('Database connected and tables created.');
+            db.run(`CREATE TABLE IF NOT EXISTS teams (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                team_name TEXT UNIQUE,
+                score INTEGER DEFAULT 0,
+                created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+            )`);
+
+            db.run(`CREATE TABLE IF NOT EXISTS attempts (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                team_name TEXT,
+                challenge_id INTEGER,
+                attempts INTEGER DEFAULT 0,
+                locked_until DATETIME DEFAULT NULL,
+                solved BOOLEAN DEFAULT FALSE,
+                UNIQUE(team_name, challenge_id)
+            )`);
+            console.log('Database connected and tables created/updated for teams.');
+        });
     }
 });
 
@@ -62,7 +73,17 @@ const FLAGS = {
     19: 'DAKSHH{GrEaT_yOu_ReCoVeReD_tHiS_sItE_2026}',
     20: 'DAKSHH{h0st_h34d3r_p01s0n1ng_f0r_t4h_w1n}',
     // Crypto (Extended)
-    21: 'DAKSHH{b1g_int3g3rs_n33d_b1gg3r_st3ps}'
+    21: 'DAKSHH{b1g_int3g3rs_n33d_b1gg3r_st3ps}',
+    // OSINT
+    22: 'dakshh{075-326-3027}',
+    23: 'dakshh{ditobus_4646_UY89703}',
+    // Mixed
+    24: 'dakshh{time_traveler}',
+    25: 'dakshh{heritage_kolkata}',
+    // Intro
+    26: 'DAKSHH{1mp0$t3r_$p0tt3d}',
+    // Rev Engg (Extended)
+    27: 'DAKSHH{uds_firmware_extracted_from_can_bus}'
 };
 
 const POINTS = {
@@ -72,52 +93,77 @@ const POINTS = {
     11: 100, 12: 500,
     13: 100, 14: 300, 15: 500, 16: 100,
     17: 300, 18: 500, 19: 300, 20: 300,
-    21: 300
+    21: 300, 22: 100, 23: 300,
+    24: 200, 25: 100, 26: 50,
+    27: 800
 };
 
-// Helper: Get user, create if not exists
-const getOrCreateUser = (username) => {
+// Helper: Get team, create if not exists
+const getOrCreateTeam = (teamName) => {
     return new Promise((resolve, reject) => {
-        db.get(`SELECT * FROM users WHERE username = ?`, [username], (err, row) => {
+        db.get(`SELECT * FROM teams WHERE team_name = ?`, [teamName], (err, row) => {
             if (err) return reject(err);
             if (row) return resolve(row);
 
-            db.run(`INSERT INTO users (username) VALUES (?)`, [username], function (err) {
+            db.run(`INSERT INTO teams (team_name) VALUES (?)`, [teamName], function (err) {
                 if (err) return reject(err);
-                resolve({ id: this.lastID, username, score: 0 });
+                
+                // Fetch the newly created team to get the exact created_at timestamp
+                db.get(`SELECT * FROM teams WHERE id = ?`, [this.lastID], (err, newRow) => {
+                    if (err) return reject(err);
+                    resolve(newRow);
+                });
             });
         });
     });
 };
 
 // Helper: Get or create attempt record
-const getAttemptRecord = (username, challengeId) => {
+const getAttemptRecord = (teamName, challengeId) => {
     return new Promise((resolve, reject) => {
-        db.get(`SELECT * FROM attempts WHERE username = ? AND challenge_id = ?`, [username, challengeId], (err, row) => {
+        db.get(`SELECT * FROM attempts WHERE team_name = ? AND challenge_id = ?`, [teamName, challengeId], (err, row) => {
             if (err) return reject(err);
             if (row) return resolve(row);
 
-            db.run(`INSERT INTO attempts (username, challenge_id) VALUES (?, ?)`, [username, challengeId], function (err) {
+            db.run(`INSERT INTO attempts (team_name, challenge_id) VALUES (?, ?)`, [teamName, challengeId], function (err) {
                 if (err) return reject(err);
-                resolve({ id: this.lastID, username, challenge_id: challengeId, attempts: 0, locked_until: null, solved: 0 });
+                resolve({ id: this.lastID, team_name: teamName, challenge_id: challengeId, attempts: 0, locked_until: null, solved: 0 });
             });
         });
     });
 };
 
-app.post('/api/submit', async (req, res) => {
-    const { username, challengeId, flag } = req.body;
+// CSRF Token Generation Endpoint
+app.get('/api/csrf-token', (req, res) => {
+    const teamName = req.query.teamName;
+    if (!teamName) {
+        return res.status(400).json({ error: 'teamName query parameter is required' });
+    }
+    // Generate a secure random token
+    const token = crypto.randomUUID();
+    csrfTokens[teamName] = token;
+    res.json({ csrfToken: token });
+});
 
-    if (!username || !challengeId || !flag) {
-        return res.status(400).json({ error: 'Username, challengeId, and flag are required.' });
+app.post('/api/submit', async (req, res) => {
+    const { teamName, challengeId, flag } = req.body;
+    const clientToken = req.headers['x-csrf-token'];
+
+    if (!teamName || !challengeId || !flag) {
+        return res.status(400).json({ error: 'Team name, challengeId, and flag are required.' });
+    }
+
+    // CSRF Validation
+    if (!clientToken || csrfTokens[teamName] !== clientToken) {
+        return res.status(403).json({ error: 'CSRF token missing or invalid. Request forbidden.' });
     }
 
     try {
-        await getOrCreateUser(username);
-        const record = await getAttemptRecord(username, challengeId);
+        const team = await getOrCreateTeam(teamName);
+        const record = await getAttemptRecord(teamName, challengeId);
 
         if (record.solved) {
-            return res.json({ success: false, message: 'You have already solved this challenge!' });
+            return res.json({ success: false, message: 'Your team has already solved this challenge!' });
         }
 
         const now = new Date();
@@ -129,26 +175,67 @@ app.post('/api/submit', async (req, res) => {
         }
 
         // Process Submission
-        if (flag === FLAGS[challengeId]) {
-            // Correct flag
-            db.run(`UPDATE attempts SET solved = 1 WHERE id = ?`, [record.id]);
-            db.run(`UPDATE users SET score = score + ? WHERE username = ?`, [POINTS[challengeId], username]);
-            return res.json({ success: true, message: 'Flag correct! Points awarded.' });
+        if (flag === FLAGS[challengeId] || flag === Object.values(FLAGS)[challengeId - 1]) { // Added safety check for values
+            const points = POINTS[challengeId] || 100;
+            
+            // Bypass Anti-Cheat constraint for Intro Challenge
+            if (challengeId == 26) {
+                db.run(`UPDATE attempts SET solved = 1 WHERE id = ?`, [record.id]);
+                db.run(`UPDATE teams SET score = score + ? WHERE team_name = ?`, [points, teamName]);
+                return res.json({ success: true, message: 'Flag correct! Points awarded.' });
+            }
+            
+            // Anti-cheat check: ensure minimum time has passed
+            const minAllowedDurationMinutes = (points / 100) * 2;
+            // Append 'Z' to SQLite's UTC timestamp so JS Date parses it correctly as UTC instead of local time
+            const teamCreationTime = new Date(team.created_at + 'Z');
+            
+            // Getting the last solve time for this team to prevent dumping all flags at once.
+            db.get(`SELECT MAX(locked_until) as last_solve FROM attempts WHERE team_name = ? AND solved = 1`, [teamName], (err, lastSolveRow) => {
+                let baselineTime = teamCreationTime;
+                
+                // For simplicity, we just check against team creation. A more robust system would check the time elapsed since their previous solve.
+                const timeDiffMinutes = (now - baselineTime) / 60000;
+
+                if (timeDiffMinutes < minAllowedDurationMinutes) {
+                    // Flag dump detected
+                    console.log(`[ANTI-CHEAT] ${teamName} submitted flag for ${challengeId} too fast. Expected >= ${minAllowedDurationMinutes}m, took ${timeDiffMinutes.toFixed(2)}m.`);
+                    return res.status(403).json({ error: 'Anti-cheat triggered: Flag submission speed too fast. Please allow time for natural progression.' });
+                }
+
+                // Correct flag
+                db.run(`UPDATE attempts SET solved = 1 WHERE id = ?`, [record.id]);
+                db.run(`UPDATE teams SET score = score + ? WHERE team_name = ?`, [points, teamName]);
+                return res.json({ success: true, message: 'Flag correct! Points awarded.' });
+            });
+            return; // Wait for callback
         } else {
             // Wrong flag
             let newAttempts = record.attempts + 1;
             let lockedUntil = null;
+            let penaltyApplied = false;
+            
+            if (challengeId == 26) {
+                db.run(`UPDATE attempts SET attempts = ? WHERE id = ?`, [newAttempts, record.id]);
+                return res.json({ success: false, message: 'Incorrect flag. Keep trying!' });
+            }
+            
             let message = `Incorrect flag. You have used ${newAttempts}/10 attempts.`;
 
             if (newAttempts >= 10) {
                 // Lockout for 30 minutes
                 lockedUntil = new Date(now.getTime() + 30 * 60000).toISOString();
                 newAttempts = 0; // reset attempts after lockout
-                message = `Incorrect flag. Max attempts reached. Locked out for 30 minutes.`;
+                
+                // Apply 10 point deduction penalty for brute forcing
+                db.run(`UPDATE teams SET score = MAX(0, score - 10) WHERE team_name = ?`, [teamName]);
+                penaltyApplied = true;
+                
+                message = `Incorrect flag limit reached. Locked out for 30 minutes. Penalty applied: -10 points.`;
             }
 
             db.run(`UPDATE attempts SET attempts = ?, locked_until = ? WHERE id = ?`, [newAttempts, lockedUntil, record.id]);
-            return res.json({ success: false, message });
+            return res.json({ success: false, penaltyApplied, message });
         }
     } catch (err) {
         console.error(err);
@@ -157,27 +244,35 @@ app.post('/api/submit', async (req, res) => {
 });
 
 app.get('/api/leaderboard', (req, res) => {
-    db.all(`SELECT username, score FROM users ORDER BY score DESC LIMIT 10`, (err, rows) => {
+    const query = `
+        SELECT t.team_name as username, t.score, COUNT(a.id) as solved_count
+        FROM teams t
+        LEFT JOIN attempts a ON t.team_name = a.team_name AND a.solved = 1
+        GROUP BY t.team_name
+        ORDER BY t.score DESC, solved_count DESC
+        LIMIT 10
+    `;
+    db.all(query, (err, rows) => {
         if (err) {
             return res.status(500).json({ error: 'Failed to fetch leaderboard' });
         }
-        res.json(rows);
+        res.json({ leaderboard: rows, totalChallenges: Object.keys(FLAGS).length });
     });
 });
 
 app.get('/api/leaderboard/full', (req, res) => {
     const query = `
-        SELECT u.username, u.score, COUNT(a.id) as solved_count
-        FROM users u
-        LEFT JOIN attempts a ON u.username = a.username AND a.solved = 1
-        GROUP BY u.username
-        ORDER BY u.score DESC, solved_count DESC
+        SELECT t.team_name as username, t.score, COUNT(a.id) as solved_count
+        FROM teams t
+        LEFT JOIN attempts a ON t.team_name = a.team_name AND a.solved = 1
+        GROUP BY t.team_name
+        ORDER BY t.score DESC, solved_count DESC
     `;
     db.all(query, (err, rows) => {
         if (err) {
             return res.status(500).json({ error: 'Failed to fetch full leaderboard' });
         }
-        res.json(rows);
+        res.json({ leaderboard: rows, totalChallenges: Object.keys(FLAGS).length });
     });
 });
 

@@ -1,6 +1,6 @@
-# 🏴‍☠️ DAKSHH CTF – Challenges Repository
+# 🏴‍☠️ Cyber-Quest – Challenges Repository
 
-Welcome to the **DAKSHH CTF Challenge Series**. This repository contains a collection of custom-built challenges categorized by domain.
+Welcome to the **Cyber-Quest Challenge Series**. This repository contains a collection of custom-built challenges categorized by domain.
 
 ---
 
@@ -34,7 +34,7 @@ All flags follow the format: `DAKSHH{example_flag_here}`
 
 ## 🔐 Crypto Challenge Series
 
-Welcome to the **DAKSHH CTF Crypto Series**. These cryptography challenges focus on breaking realistic encryption implementations using thematic, pop-culture-inspired scenarios. 
+Welcome to the **Cyber-Quest Crypto Series**. These cryptography challenges focus on breaking realistic encryption implementations using thematic, pop-culture-inspired scenarios. 
 
 Each challenge includes a player-facing `dist/` folder containing redacted source code and the exact output files.
 
@@ -55,7 +55,7 @@ All flags follow the format: `DAKSHH{example_flag_here}`
 
 **Contributor:** Nabhonil Bhattacharjee (nabhocharger69)
 
-Welcome to the **DAKSHH CTF Reverse Engineering Series**. This section contains high-difficulty reverse engineering challenges designed to test your understanding of:
+Welcome to the **Cyber-Quest Reverse Engineering Series**. This section contains high-difficulty reverse engineering challenges designed to test your understanding of:
 
 - Low-level program logic  
 - LLVM IR analysis  
@@ -137,7 +137,7 @@ All flags follow the format: `DAKSHH{example_flag_here}`
     - *Theme*: Discrete Logarithm
     - *Concept*: Baby-step Giant-step algorithm to solve a DLP and recover the AES decryption key for the encrypted flag.
 
-All flags follow the format: `DAKSHH{example_flag_here}`
+All flags follow the format: `dakshh{example_flag_here}`
 
 ---
 
@@ -155,7 +155,7 @@ Cyberpunk hacker-themed narrative challenges involving various data analysis ski
 3. **Poisoned Intelligence** (Medium)
     - *Theme*: AI Data Poisoning / Dataset Inspection
 
-These unique challenges have an alternative flag format: `flag{example_flag_here}`
+These unique challenges have an alternative flag format: `dakshh{example_flag_here}`
 
 ---
 
@@ -190,3 +190,20 @@ Browser-based challenges combining web exploitation, cryptography, and OSINT ski
     - *Concept*: Base64 cookie decoding and forgery for privilege escalation, followed by a Caesar Cipher challenge with the shift key hidden in `robots.txt`.
 
 All flags follow the format: `dakshh{example_flag_here}`
+
+---
+
+## 🛡️ Platform Security & Anti-Cheat
+
+The Cyber-Quest platform includes custom features to ensure a fair and secure competitive environment.
+
+### Anti-Cheat
+- **Speed Run Prevention**: Impossibly fast flag submissions are rejected. Time calculations mandate a natural progression period based on the challenge's difficulty (e.g., 2 mins per 100 points).
+- **Penalty Brute Force System**: Teams attempting 10 consecutive incorrect flags on a specific challenge incur a **30-minute lockout** and negative **10-point score deduction**.
+- **Team-Based Model**: Scores are mapped dynamically to Team Names preventing standalone user score inflation.
+
+### Frontend Protections
+- **Strict Content Security Policy (CSP)**: Ensures inline Javascript, malicious `eval()`, and unknown external CDNs cannot execute to prevent Cross-Site Scripting (XSS).
+- **DOM Sanitization**: Leaderboards securely inject usernames as standard text content natively preventing Stored XSS vectors in user inputs.
+- **Anti-CSRF Logic**: The `/api/submit` endpoint incorporates a session-scoped secure UUID token system validating identical origins to prevent Request Forgery.
+- **Tampering Shields**: Keyboard shortcuts for DevTools (F12) and context menus are administratively disabled.

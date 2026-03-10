@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DAKSHH CTF - Global Leaderboard</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://fonts.gstatic.com; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' http://localhost:3005;">
+    <title>Cyber-Quest - Global Leaderboard</title>
     <link rel="stylesheet" href="./style.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;700&display=swap"
@@ -57,6 +58,21 @@
 </head>
 
 <body>
+    <!-- Anti-Tamper Script -->
+    <script>
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.onkeydown = function (e) {
+            if (e.keyCode == 123) { // F12
+                return false;
+            }
+            if (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0) || e.keyCode == 'C'.charCodeAt(0))) {
+                return false;
+            }
+            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+                return false;
+            }
+        };
+    </script>
     <div id="app">
         <header>
             <div class="glitch-wrapper">
@@ -69,7 +85,7 @@
         <main>
             <div class="intro" style="text-align: center;">
                 <h2>Current Standings</h2>
-                <p>Top Hackers across all DAKSHH CTF categories.</p>
+                <p>Top Teams across all Cyber-Quest categories.</p>
             </div>
 
             <div style="margin-top: 40px;">
@@ -77,7 +93,7 @@
                     <thead>
                         <tr>
                             <th>RANK</th>
-                            <th>HACKER ALIAS</th>
+                            <th>TEAM NAME</th>
                             <th>SOLVED CHALLENGES</th>
                             <th>TOTAL SCORE</th>
                         </tr>
@@ -92,7 +108,7 @@
         </main>
 
         <footer>
-            <p>Developed for DAKSHH CTF.</p>
+            <p>Developed for Cyber-Quest.</p>
         </footer>
     </div>
     <script src="./leaderboard.js"></script>

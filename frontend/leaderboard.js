@@ -12,12 +12,12 @@ async function loadFullLeaderboard() {
         const tbody = document.getElementById('full-leaderboard-list');
         tbody.innerHTML = '';
 
-        if (data.length === 0) {
+        if (!data.leaderboard || data.leaderboard.length === 0) {
             tbody.innerHTML = '<tr><td colspan="4" style="text-align: center;">No flags submitted yet.</td></tr>';
             return;
         }
 
-        data.forEach((user, index) => {
+        data.leaderboard.forEach((user, index) => {
             const tr = document.createElement('tr');
 
             // Check if this row is the current user
@@ -25,12 +25,25 @@ async function loadFullLeaderboard() {
                 tr.className = 'current-user-row';
             }
 
-            tr.innerHTML = `
-                <td class="rank">#${index + 1}</td>
-                <td>${user.username}</td>
-                <td>${user.solved_count}</td>
-                <td>${user.score} pts</td>
-            `;
+            // Safe DOM insertion to prevent Stored XSS
+            const tdRank = document.createElement('td');
+            tdRank.className = 'rank';
+            tdRank.textContent = `#${index + 1}`;
+
+            const tdUsername = document.createElement('td');
+            tdUsername.textContent = user.username;
+
+            const tdSolved = document.createElement('td');
+            tdSolved.textContent = `${user.solved_count} / ${data.totalChallenges}`;
+
+            const tdScore = document.createElement('td');
+            tdScore.textContent = `${user.score} pts`;
+
+            tr.appendChild(tdRank);
+            tr.appendChild(tdUsername);
+            tr.appendChild(tdSolved);
+            tr.appendChild(tdScore);
+
             tbody.appendChild(tr);
         });
     } catch (e) {
