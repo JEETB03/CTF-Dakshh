@@ -193,6 +193,8 @@ All flags follow the format: `dakshh{example_flag_here}`
 
 ---
 
+**Contributor:** JEET BISWAS (JEETB03)
+
 ## 🛡️ Platform Security & Anti-Cheat
 
 The Cyber-Quest platform includes custom features to ensure a fair and secure competitive environment.
