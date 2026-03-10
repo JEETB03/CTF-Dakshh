@@ -156,3 +156,37 @@ Cyberpunk hacker-themed narrative challenges involving various data analysis ski
     - *Theme*: AI Data Poisoning / Dataset Inspection
 
 These unique challenges have an alternative flag format: `flag{example_flag_here}`
+
+---
+
+**Contributor:** JEET BISWAS (JEETB03)
+
+## 🔎 OSINT Challenge Series
+
+Open-Source Intelligence challenges that test your ability to gather information from images, maps, and public databases to uncover hidden details.
+
+**Challenges included:**
+1. **Bike Shop Mystery** (Easy)
+    - *Concept*: Image analysis / geo-location / storefront identification to find a bike shop's contact number in Kyoto, Japan.
+2. **Holiday Bus Investigation** (Easy)
+    - *Concept*: Political poster geo-location / Google Maps Street View / vehicle registration database lookup in Roskilde, Denmark.
+
+All flags follow the format: `dakshh{example_flag_here}`
+
+---
+
+**Contributor:** JEET BISWAS (JEETB03)
+
+## 🧩 Mixed Challenge Series
+
+Browser-based challenges combining web exploitation, cryptography, and OSINT skills in thematic, multi-stage scenarios.
+
+**Challenges included:**
+1. **Time Travel Room** (Easy/Medium)
+    - *Theme*: Cyberpunk / Time Travel
+    - *Concept*: localStorage manipulation to fake a 365-day login streak, followed by Caesar Cipher decryption using an OSINT-derived shift key.
+2. **Guest Cookie Paradox** (Easy)
+    - *Theme*: Cookie Forgery / Reconnaissance
+    - *Concept*: Base64 cookie decoding and forgery for privilege escalation, followed by a Caesar Cipher challenge with the shift key hidden in `robots.txt`.
+
+All flags follow the format: `dakshh{example_flag_here}`
