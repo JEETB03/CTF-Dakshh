@@ -166,7 +166,7 @@ These unique challenges have an alternative flag format: `dakshh{example_flag_he
 Open-Source Intelligence challenges that test your ability to gather information from images, maps, and public databases to uncover hidden details.
 
 **Challenges included:**
-1. **Bike Shop Mystery** (Easy)
+1. **Spokes & Secrets** (Easy)
     - *Concept*: Image analysis / geo-location / storefront identification to find a bike shop's contact number in Kyoto, Japan.
 2. **Holiday Bus Investigation** (Easy)
     - *Concept*: Political poster geo-location / Google Maps Street View / vehicle registration database lookup in Roskilde, Denmark.

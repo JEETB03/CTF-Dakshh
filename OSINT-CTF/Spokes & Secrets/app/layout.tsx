@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "OSINT CTF — Kyoto Bike Shop Mystery",
-  description: "Open Source Intelligence Capture The Flag Challenge. Use your OSINT skills to find the phone number of a bike shop in Kyoto, Japan.",
+  title: "Spokes & Secrets — OSINT CTF Challenge",
+  description: "Spokes & Secrets: An Open Source Intelligence challenge. Use your OSINT skills to uncover the secrets behind a mysterious bike shop in Kyoto, Japan.",
 };
 
 export default function RootLayout({

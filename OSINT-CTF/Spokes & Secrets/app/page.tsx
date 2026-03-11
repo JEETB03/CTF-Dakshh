@@ -64,9 +64,9 @@ export default function Home() {
             <span className="dot" />
             OSINT Challenge Active
           </div>
-          <h1 className="challenge-title">Kyoto Bike Shop Mystery</h1>
+          <h1 className="challenge-title">Spokes & Secrets</h1>
           <p className="challenge-subtitle">
-            Use your Open Source Intelligence skills to identify this bike shop in Kyoto and find its phone number.
+            Use your Open Source Intelligence skills to uncover the secrets behind this mysterious bike shop in Kyoto.
           </p>
         </header>
 
@@ -145,7 +145,7 @@ export default function Home() {
 
         {/* Footer */}
         <footer className="challenge-footer">
-          OSINTC-TF &bull; Open Source Intelligence Challenge &bull; 2026
+          Spokes & Secrets &bull; OSINT Challenge &bull; 2026
         </footer>
       </main>
     </>

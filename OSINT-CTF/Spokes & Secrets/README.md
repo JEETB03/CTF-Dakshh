@@ -1,4 +1,4 @@
-# 🚲 Bike Shop Mystery — OSINT CTF Writeup
+# 🚲 Spokes & Secrets — OSINT CTF Writeup
 
 ## 🏷️ Challenge Overview
 
