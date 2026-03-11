@@ -185,7 +185,7 @@ Browser-based challenges combining web exploitation, cryptography, and OSINT ski
 1. **Time Travel Room** (Easy/Medium)
     - *Theme*: Cyberpunk / Time Travel
     - *Concept*: localStorage manipulation to fake a 365-day login streak, followed by Caesar Cipher decryption using an OSINT-derived shift key.
-2. **Guest Cookie Paradox** (Easy)
+2. **Half-Baked Access** (Easy)
     - *Theme*: Cookie Forgery / Reconnaissance
     - *Concept*: Base64 cookie decoding and forgery for privilege escalation, followed by a Caesar Cipher challenge with the shift key hidden in `robots.txt`.
 

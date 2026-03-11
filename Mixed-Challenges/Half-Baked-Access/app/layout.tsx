@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-    title: "Dakshh Vault",
+    title: "Half-Baked Access",
     description: "Secure Vault Access",
 };
 

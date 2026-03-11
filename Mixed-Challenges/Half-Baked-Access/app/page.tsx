@@ -30,8 +30,8 @@ export default function Home() {
 
     return (
         <div className="terminal-container">
-            <h1 className="glitch-text">Dakshh Digital Vault</h1>
-            <p>Welcome to Dakshh Vault.</p>
+            <h1 className="glitch-text">Half-Baked Access</h1>
+            <p>Welcome to the Half-Baked Access.</p>
             <p>Only authorized administrators can access the secure vault.</p>
             <p>Guests may explore the system but cannot access protected files.</p>
 

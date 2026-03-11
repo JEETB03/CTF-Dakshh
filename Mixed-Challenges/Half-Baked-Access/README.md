@@ -1,6 +1,6 @@
-# Guest Cookie Paradox - CTF Writeup
+# Half-Baked Access - CTF Writeup
 
-Welcome to the **Guest Cookie Paradox** challenge! This guide explains how to solve it in a few simple steps.
+Welcome to the **Half-Baked Access** challenge! This guide explains how to solve it in a few simple steps.
 
 ## The Objective
 The goal of this challenge is to gain unauthorized "Admin" access to the vault and retrieve the secret flags.
