@@ -97,9 +97,10 @@ export default function StreakCard({ onVaultUnlocked }: StreakCardProps) {
                         </Alert>
                     )}
 
-                    <p className="hint-text">
+                      <div className="text-xs text-zinc-600 mt-4 italic font-mono opacity-50">
                         &quot;Time travelers don&apos;t wait a year… they rewrite history.&quot;
-                    </p>
+                        <br />— The 365th Day
+                      </div>
                 </CardContent>
             </Card>
         </div>

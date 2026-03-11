@@ -61,7 +61,7 @@ export default function Home() {
           <div className="header-badge points-badge">POINTS — 150</div>
           <h1 className="ctf-title">
             <span className="title-icon">⏳</span>
-            Time Travel Room
+            The 365th Day
           </h1>
           <p className="ctf-subtitle">
             Manipulate time if you dare.
@@ -89,7 +89,7 @@ export default function Home() {
 
         {/* Footer */}
         <footer className="ctf-footer">
-          <p>Time Travel Room — CTF Challenge</p>
+          <p>The 365th Day — CTF Challenge</p>
           <p className="footer-sub">What secrets does your browser hold?</p>
         </footer>
       </div>

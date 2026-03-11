@@ -182,7 +182,7 @@ All flags follow the format: `dakshh{example_flag_here}`
 Browser-based challenges combining web exploitation, cryptography, and OSINT skills in thematic, multi-stage scenarios.
 
 **Challenges included:**
-1. **Time Travel Room** (Easy/Medium)
+1. **The 365th Day** (Easy/Medium)
     - *Theme*: Cyberpunk / Time Travel
     - *Concept*: localStorage manipulation to fake a 365-day login streak, followed by Caesar Cipher decryption using an OSINT-derived shift key.
 2. **Half-Baked Access** (Easy)

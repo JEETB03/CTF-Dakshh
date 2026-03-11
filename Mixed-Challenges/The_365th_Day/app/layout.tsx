@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Time Travel Room | CTF Challenge",
+  title: "The 365th Day | CTF Challenge",
   description: "Manipulate time if you dare. A browser-based CTF challenge.",
 };
 

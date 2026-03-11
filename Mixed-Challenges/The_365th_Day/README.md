@@ -1,4 +1,4 @@
-# ⏳ Time Travel Room — CTF Challenge
+# ⏳ The 365th Day — CTF Challenge
 
 > **Manipulate time if you dare.**
 
