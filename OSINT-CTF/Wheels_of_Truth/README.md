@@ -1,4 +1,4 @@
-# 🚌 Holiday Bus Investigation — CTF Writeup
+# 🚌 Wheels of Truth — CTF Writeup
 
 > **Category:** OSINT  
 > **Flag:** `dakshh{ditobus_4646_UY89703}`

@@ -84,9 +84,9 @@ export default function HomePage() {
             <span className="badge-dot"></span>
             ACTIVE INVESTIGATION
           </div>
-          <h1 className="hero-title">Holiday Bus Investigation</h1>
+          <h1 className="hero-title">Wheels of Truth</h1>
           <p className="hero-subtitle">
-            Analyze the evidence below using OSINT techniques. Identify the bus company, route number, and registration.
+            Uncover the truth behind this holiday snapshot. Use OSINT techniques to identify the bus company, route number, and registration.
           </p>
         </div>
 

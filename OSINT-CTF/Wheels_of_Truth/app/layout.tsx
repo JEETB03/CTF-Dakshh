@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Shadow Lens — Holiday Bus Investigation",
-  description: "Act as a digital investigator solving real-world clues using OSINT techniques. Investigate the holiday bus image and identify key details.",
+  title: "Wheels of Truth — OSINT CTF Challenge",
+  description: "Wheels of Truth: Use OSINT techniques to investigate a holiday bus photo and uncover the truth behind its identity.",
   keywords: ["CTF", "OSINT", "Capture The Flag", "Investigation", "Bus", "Challenge"],
 };
 
